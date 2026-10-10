@@ -3,10 +3,10 @@ window.BOYALICA = {
   // Sunucu adı (oyundaki server listesiyle aynı)
   serverName: "BOYALICA",
 
-  // Oyun sunucusunun site verisi adresi (sıralama, ırk yüzdesi, çevrimiçi sayısı).
-  // Sunucu bilgisayarında: http://localhost:8090/api/site.json
-  // İnternetten erişim için playit'te 8090 portuna TCP tüneli açıp o adresi buraya yaz, ör. "http://xxx.ply.gg:12345/api/site.json"
-  apiUrl: "http://localhost:8090/api/site.json",
+  // Oyun sunucusunun site adresi (sıralama, ırk yüzdesi, kayıt / giriş / profil). Sonunda / olmadan.
+  // Sunucu bilgisayarında: http://localhost:8090
+  // İnternetten erişim için https gerekir (site https): 8090 portunu Cloudflare Tunnel ile açıp o adresi yaz, ör. "https://boyalica-api.ornek.com"
+  apiBase: "http://localhost:8090",
 
   // İndirme / topluluk linkleri. Boş bırakılan düğme "Yakında" olarak görünür.
   iosUrl: "",        // TestFlight herkese açık bağlantısı (onaydan sonra)

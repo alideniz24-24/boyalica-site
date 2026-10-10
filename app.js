@@ -152,6 +152,8 @@
 
   // profil sayfası (#profil)
   function route() {
+    // oyundaki "Kayıt Ol" düğmesi siteyi #kayit ile açar
+    if (location.hash === "#kayit") { openModal(true); history.replaceState(null, "", location.pathname); }
     var prof = location.hash === "#profil";
     if (prof && !stored(TK)) { openModal(false); location.hash = "#top"; prof = false; }
     document.body.classList.toggle("in-profile", prof);

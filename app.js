@@ -23,16 +23,18 @@
   for (var k = 0; k < 4; k++) words.forEach(function (w) { t += "<span>" + esc(w) + "</span><span class='s'>✦</span>"; });
   $("ticker").innerHTML = t + t;
 
-  // haberler
-  $("news").innerHTML = (C.news || []).map(function (n) {
+  // haberler + duyurular: news.json (oyundaki launcher da okur)
+  function renderNews(N) {
+  $("news").innerHTML = (N.news || []).map(function (n) {
     return "<article class='card news-item'><div class='img' style=\"background-image:url('" + esc(n.image) + "')\"><span class='tag'>" + esc(n.tag) + "</span></div>" +
       "<div class='body'><span class='date'>" + esc(n.date) + "</span><h3>" + esc(n.title) + "</h3><p>" + esc(n.text) + "</p></div></article>";
   }).join("");
 
-  // duyurular
-  $("ann").innerHTML = (C.announcements || []).map(function (a) {
+  $("ann").innerHTML = (N.announcements || []).map(function (a) {
     return "<div class='card ann-item'><span class='d'>" + esc(a.date) + "</span><div><h3>" + esc(a.title) + "</h3><p>" + esc(a.text) + "</p></div></div>";
   }).join("");
+  }
+  fetch("news.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(renderNews).catch(function () { renderNews({}); });
 
   // galeri + büyütme
   $("gallery").innerHTML = (C.gallery || []).map(function (g) {

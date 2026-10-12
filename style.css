@@ -33,8 +33,9 @@ h1, h2, h3 { font-family: "Cinzel", serif; margin: 0; letter-spacing: .5px; }
 
 /* giriş görseli */
 .hero { position: relative; min-height: 92vh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
-.hero-bg { position: absolute; inset: 0 0 0 42%; background: url("images/hero.jpg") 60% 30% / cover no-repeat; }
-.hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--bg) 0%, rgba(11,10,13,.6) 25%, rgba(11,10,13,.1) 60%, rgba(11,10,13,.3) 100%), linear-gradient(0deg, var(--bg) 0%, transparent 30%); }
+/* resim tüm genişlikte (geniş ekranda solda boş siyah şerit kalmasın); yazının olduğu sol taraf koyulaştırılır */
+.hero-bg { position: absolute; inset: 0; background: url("images/hero.jpg") right 30% / cover no-repeat; }
+.hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--bg) 0%, rgba(11,10,13,.92) 22%, rgba(11,10,13,.55) 45%, rgba(11,10,13,.1) 70%, rgba(11,10,13,.3) 100%), linear-gradient(0deg, var(--bg) 0%, transparent 30%); }
 .hero-in { position: relative; max-width: 1180px; width: 100%; margin: 0 auto; padding: 120px 24px 80px; }
 .kicker { color: var(--gold); letter-spacing: 4px; font-size: 13px; font-weight: 600; margin: 0 0 14px; }
 .hero h1 { font-size: clamp(40px, 7vw, 84px); line-height: 1.05; text-shadow: 0 4px 24px rgba(0,0,0,.6); }
@@ -139,7 +140,7 @@ td.r1 { color: var(--gold2); font-weight: 700; }
   .news, .classes { grid-template-columns: 1fr 1fr; }
   .ranks, .ann, .download { grid-template-columns: 1fr; }
   .badge { display: none; }
-  .hero-bg { inset: 0 0 0 48%; }
+  .hero-bg { background-position: 70% 30%; }
 }
 @media (max-width: 600px) {
   .btn-green { padding: 8px 10px; font-size: 11px; }

@@ -6,7 +6,7 @@ window.BOYALICA = {
   // Oyun sunucusunun site adresi (sıralama, ırk yüzdesi, kayıt / giriş / profil). Sonunda / olmadan.
   // Sunucu bilgisayarında: http://localhost:8090
   // İnternetten erişim için https gerekir (site https): 8090 portunu Cloudflare Tunnel ile açıp o adresi yaz, ör. "https://boyalica-api.ornek.com"
-  apiBase: "http://localhost:8090",
+  apiBase: "https://frankfurt-shipment-wrap-ict.trycloudflare.com",   // Cloudflare hızlı tünel (sunucu bilgisayarı yeniden başlarsa adres değişir)
 
   // İndirme / topluluk linkleri. Boş bırakılan düğme "Yakında" olarak görünür.
   iosUrl: "https://testflight.apple.com/join/Srn1BPmR",   // TestFlight herkese açık bağlantısı

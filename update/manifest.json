@@ -1,9 +1,9 @@
 {
-  "appVersion": 1,
+  "appVersion": 2,
   "minAppVersion": 1,
   "iosUrl": "https://testflight.apple.com/join/Srn1BPmR",
   "androidUrl": "",
-  "notes": "",
+  "notes": "Yeni sürüm: sunucu yeni adreste (daha düşük ping), Light Feet / hız iksiri koşu animasyonu düzeltildi.",
   "contentVersion": 0,
   "files": []
 }

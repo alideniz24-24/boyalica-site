@@ -101,10 +101,11 @@
       return;
     }
     auth.innerHTML = "<button class='user-chip' id='b-user'><span class='avatar'>" + esc(u.charAt(0)) + "</span><span class='uname'>" + esc(u) + "</span> ▾</button>" +
-      "<div class='dropdown' id='dd'><a href='#profil'>Profilim</a><a id='b-out'>Çıkış Yap</a></div>";
+      "<div class='dropdown' id='dd'><a href='#profil'>Hesap Bilgilerim</a><a href='#profil/karakterler'>Karakterlerim</a><a href='#profil/sifre'>Şifre Değiştir</a><a id='b-out'>Çıkış Yap</a></div>";
     $("b-user").onclick = function (e) { e.stopPropagation(); $("dd").classList.toggle("open"); };
-    $("b-out").onclick = function () { api("/api/logout", {}, function () {}); store(TK, null); store(UK, null); renderAuth(); location.hash = "#top"; };
+    $("b-out").onclick = logout;
   }
+  function logout() { api("/api/logout", {}, function () {}); store(TK, null); store(UK, null); renderAuth(); location.hash = "#top"; }
   document.addEventListener("click", function () { var d = $("dd"); if (d) d.classList.remove("open"); });
 
   var modal = $("modal");
@@ -156,17 +157,31 @@
   function route() {
     // oyundaki "Kayıt Ol" düğmesi siteyi #kayit ile açar
     if (location.hash === "#kayit") { openModal(true); history.replaceState(null, "", location.pathname); }
-    var prof = location.hash === "#profil";
+    var prof = location.hash === "#profil" || location.hash.indexOf("#profil/") === 0;
     if (prof && !stored(TK)) { openModal(false); location.hash = "#top"; prof = false; }
     document.body.classList.toggle("in-profile", prof);
     $("profil").hidden = !prof;
-    if (prof) { window.scrollTo(0, 0); loadProfile(); }
+    if (prof) { showPane(location.hash); window.scrollTo(0, 0); loadProfile(); }
   }
+  // panel sayfaları: #profil (bilgi), #profil/karakterler, #profil/sifre
+  var PANES = {
+    bilgi: ["Hesap Bilgilerim", "Hesap ve kullanıcı bilgilerini görüntüle"],
+    karakter: ["Karakterlerim", "Hesabındaki karakterler ve bilgileri"],
+    sifre: ["Şifre Değiştir", "Oyun ve site şifreni güncelle"]
+  };
+  function showPane(hash) {
+    var key = hash === "#profil/karakterler" ? "karakter" : hash === "#profil/sifre" ? "sifre" : "bilgi";
+    document.querySelectorAll(".pane").forEach(function (p) { p.hidden = p.getAttribute("data-pane") !== key; });
+    document.querySelectorAll(".panel-nav a[data-pane]").forEach(function (a) { a.classList.toggle("on", a.getAttribute("data-pane") === key); });
+    $("pane-title").textContent = PANES[key][0];
+    $("pane-sub").textContent = PANES[key][1];
+  }
+  $("nav-out").onclick = logout;
   function loadProfile() {
     api("/api/me", null, function (d) {
       if (!d.ok) {
         if (/Oturum/.test(d.error || "")) { store(TK, null); store(UK, null); renderAuth(); location.hash = "#top"; openModal(false); $("l-msg").textContent = d.error; return; }
-        $("p-chars").innerHTML = emptyRows(d.error);
+        $("p-chars").innerHTML = "<div class='card empty-card'>" + esc(d.error) + "</div>";
         return;
       }
       $("p-avatar").textContent = d.user.charAt(0);
@@ -180,13 +195,22 @@
       $("p-state").textContent = d.status;
       $("p-last").textContent = d.lastLogin;
       $("p-created").textContent = d.created;
+      $("p-last-h").textContent = d.lastLogin;
+      $("p-created-h").textContent = d.created;
+      $("p-rank").textContent = d.maxLevel >= 83 ? "Efsane" : d.maxLevel >= 60 ? "Usta Oyuncu" : "Oyuncu";
+      $("s-play").textContent = String(d.playTime || "-").replace(" saat ", "s ").replace(" dk", "dk");
       $("s-chars").textContent = d.charCount;
       $("s-np").textContent = fmt(d.totalNp);
       $("s-lvl").textContent = d.maxLevel;
       var jobs = { Warrior: "Warrior", Rogue: "Rogue", Mage: "Mage", Priest: "Priest" };
       $("p-chars").innerHTML = (d.characters || []).length ? d.characters.map(function (c) {
-        return "<tr><td>" + esc(c.name) + "</td><td>" + esc(jobs[c.job] || c.job) + "</td><td><span class='race " + esc(c.nation) + "'>" + (c.nation === "KARUS" ? "KARUS" : "EL MORAD") + "</span></td><td>" + c.level + "</td><td>" + fmt(c.np) + "</td><td>" + esc(c.clan) + "</td></tr>";
-      }).join("") : "<tr><td colspan='6' class='empty'>Henüz karakterin yok. Oyuna girip karakter oluşturabilirsin.</td></tr>";
+        var karus = c.nation === "KARUS";
+        return "<div class='card char-card " + (karus ? "ka" : "el") + "'>" +
+          "<div class='char-top'><div class='char-ico'>" + esc((jobs[c.job] || c.job || "?").charAt(0)) + "</div>" +
+          "<div><h3>" + esc(c.name) + "</h3><span class='char-job'>" + esc(jobs[c.job] || c.job) + "</span></div>" +
+          "<span class='race " + esc(c.nation) + "'>" + (karus ? "KARUS" : "EL MORAD") + "</span></div>" +
+          "<dl class='char-stats'><dt>Seviye</dt><dd>" + c.level + "</dd><dt>NP</dt><dd>" + fmt(c.np) + "</dd><dt>Klan</dt><dd>" + esc(c.clan) + "</dd></dl></div>";
+      }).join("") : "<div class='card empty-card'>Henüz karakterin yok. Oyuna girip karakter oluşturabilirsin.</div>";
     });
   }
   $("pw-form").onsubmit = function (e) {

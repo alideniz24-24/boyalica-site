@@ -43,47 +43,74 @@
 </section>
 
 <section class="sec profile" id="profil" hidden>
-  <a class="back" href="#top">← Ana sayfa</a>
-  <div class="card prof-head">
-    <div class="avatar big" id="p-avatar">?</div>
-    <div><h1 id="p-user">-</h1><span class="status" id="p-status">-</span></div>
-  </div>
-  <div class="prof-grid">
-    <div class="card prof-info">
-      <h3>Profil Bilgileri</h3>
-      <dl>
-        <dt>Kullanıcı Adı</dt><dd id="p-name">-</dd>
-        <dt>E-posta Adresi</dt><dd id="p-email">-</dd>
-        <dt>Toplam Oyun Süresi</dt><dd id="p-play">-</dd>
-        <dt>Hesap Durumu</dt><dd id="p-state">-</dd>
-        <dt>Son Giriş</dt><dd id="p-last">-</dd>
-        <dt>Kayıt Tarihi</dt><dd id="p-created">-</dd>
-      </dl>
+  <div class="panel-top">
+    <div>
+      <h2 class="panel-title" id="pane-title">Hesap Bilgilerim</h2>
+      <p class="sub" id="pane-sub">Hesap ve kullanıcı bilgilerini görüntüle</p>
     </div>
-    <div class="prof-side">
-      <div class="card prof-stats">
-        <h3>Hesap İstatistikleri</h3>
-        <div class="stats">
-          <div><b id="s-chars">0</b><span>Karakter</span></div>
-          <div><b id="s-np">0</b><span>Toplam NP</span></div>
-          <div><b id="s-lvl">0</b><span>En Yüksek Seviye</span></div>
+    <a class="back" href="#top">← Ana sayfa</a>
+  </div>
+  <div class="panel">
+    <aside class="panel-nav card">
+      <a href="#profil" data-pane="bilgi"><span class="pi">👤</span>Hesap Bilgilerim</a>
+      <a href="#profil/karakterler" data-pane="karakter"><span class="pi">⚔</span>Karakterlerim</a>
+      <a href="#profil/sifre" data-pane="sifre"><span class="pi">🔒</span>Şifre Değiştir</a>
+      <a id="nav-out" class="out"><span class="pi">⏻</span>Çıkış Yap</a>
+    </aside>
+    <div class="panel-main">
+      <div class="card prof-head">
+        <div class="avatar big" id="p-avatar">?</div>
+        <div class="prof-who">
+          <h1 id="p-user">-</h1>
+          <div class="badges"><span class="status" id="p-status">-</span><span class="pill-b" id="p-rank">Oyuncu</span></div>
+          <div class="chips">
+            <span><small>Son Giriş</small><b id="p-last-h">-</b></span>
+            <span><small>Kayıt Tarihi</small><b id="p-created-h">-</b></span>
+          </div>
         </div>
       </div>
-      <div class="card prof-sec">
-        <h3>Güvenlik</h3>
-        <form id="pw-form" class="form">
-          <input type="password" id="pw-old" placeholder="Mevcut şifre" autocomplete="current-password" required>
-          <input type="password" id="pw-new" placeholder="Yeni şifre" autocomplete="new-password" minlength="4" required>
-          <input type="password" id="pw-new2" placeholder="Yeni şifre (tekrar)" autocomplete="new-password" minlength="4" required>
-          <button class="btn-gold" type="submit">Şifreyi Değiştir</button>
-          <p class="msg" id="pw-msg"></p>
-        </form>
+
+      <div class="pane" data-pane="bilgi">
+        <div class="card prof-info">
+          <h3>Profil Bilgileri</h3>
+          <dl>
+            <dt>Kullanıcı Adı</dt><dd id="p-name" data-l="Kullanıcı Adı">-</dd>
+            <dt>E-posta Adresi</dt><dd id="p-email" data-l="E-posta Adresi">-</dd>
+            <dt>Toplam Oyun Süresi</dt><dd id="p-play" data-l="Toplam Oyun Süresi">-</dd>
+            <dt>Hesap Durumu</dt><dd id="p-state" data-l="Hesap Durumu">-</dd>
+            <dt>Son Giriş</dt><dd id="p-last" data-l="Son Giriş">-</dd>
+            <dt>Kayıt Tarihi</dt><dd id="p-created" data-l="Kayıt Tarihi">-</dd>
+          </dl>
+        </div>
+        <div class="card prof-stats">
+          <h3>Hesap İstatistikleri</h3>
+          <div class="stats">
+            <div><b id="s-chars">0</b><span>Karakter</span></div>
+            <div><b id="s-lvl">0</b><span>En Yüksek Seviye</span></div>
+            <div><b id="s-np">0</b><span>Toplam NP</span></div>
+            <div><b id="s-play">0</b><span>Oyun Süresi</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pane" data-pane="karakter" hidden>
+        <div class="char-grid" id="p-chars"></div>
+      </div>
+
+      <div class="pane" data-pane="sifre" hidden>
+        <div class="card prof-sec">
+          <h3>Şifre Değiştir</h3>
+          <p class="note">Oyuna ve siteye aynı şifreyle girersin. Şifreni değiştirince diğer cihazlardaki site oturumların kapanır.</p>
+          <form id="pw-form" class="form">
+            <input type="password" id="pw-old" placeholder="Mevcut şifre" autocomplete="current-password" required>
+            <input type="password" id="pw-new" placeholder="Yeni şifre" autocomplete="new-password" minlength="4" required>
+            <input type="password" id="pw-new2" placeholder="Yeni şifre (tekrar)" autocomplete="new-password" minlength="4" required>
+            <button class="btn-gold" type="submit">Şifreyi Değiştir</button>
+            <p class="msg" id="pw-msg"></p>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="card table-card">
-    <h3>Karakterlerim</h3>
-    <table><thead><tr><th>Karakter</th><th>Sınıf</th><th>Irk</th><th>Seviye</th><th>NP</th><th>Klan</th></tr></thead><tbody id="p-chars"></tbody></table>
   </div>
 </section>
 

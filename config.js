@@ -9,7 +9,7 @@ window.BOYALICA = {
   apiBase: "http://localhost:8090",
 
   // İndirme / topluluk linkleri. Boş bırakılan düğme "Yakında" olarak görünür.
-  iosUrl: "",        // TestFlight herkese açık bağlantısı (onaydan sonra)
+  iosUrl: "https://testflight.apple.com/join/Srn1BPmR",   // TestFlight herkese açık bağlantısı
   androidUrl: "",    // Android sürümü çıkınca
   discordUrl: "",    // Discord davet bağlantısı
 

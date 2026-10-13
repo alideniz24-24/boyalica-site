@@ -1,9 +1,9 @@
 {
-  "appVersion": 3,
-  "minAppVersion": 3,
+  "appVersion": 4,
+  "minAppVersion": 4,
   "iosUrl": "https://testflight.apple.com/join/Srn1BPmR",
   "androidUrl": "https://github.com/alideniz24-24/boyalica-site/releases/latest/download/KOMobile.apk",
-  "notes": "Yeni sürüm zorunlu: Battle Arena, NP sembolleri, desen kilidiyle giriş, orijinal KO yükleme ekranı, harita adları.",
+  "notes": "Yeni sürüm zorunlu: test dönemi - Moradon'da full eşya NPC'leri (silah, zırh, takı), level 83, 20 GB altın, 100.000 Knight Cash.",
   "contentVersion": 0,
   "files": []
 }

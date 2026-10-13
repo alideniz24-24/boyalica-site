@@ -1,9 +1,9 @@
 {
-  "appVersion": 2,
-  "minAppVersion": 1,
+  "appVersion": 3,
+  "minAppVersion": 3,
   "iosUrl": "https://testflight.apple.com/join/Srn1BPmR",
-  "androidUrl": "",
-  "notes": "Yeni sürüm: sunucu yeni adreste (daha düşük ping), Light Feet / hız iksiri koşu animasyonu düzeltildi.",
+  "androidUrl": "https://github.com/alideniz24-24/boyalica-site/releases/latest/download/KOMobile.apk",
+  "notes": "Yeni sürüm zorunlu: Battle Arena, NP sembolleri, desen kilidiyle giriş, orijinal KO yükleme ekranı, harita adları.",
   "contentVersion": 0,
   "files": []
 }

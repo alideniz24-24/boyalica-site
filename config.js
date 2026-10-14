@@ -10,7 +10,7 @@ window.BOYALICA = {
 
   // İndirme / topluluk linkleri. Boş bırakılan düğme "Yakında" olarak görünür.
   iosUrl: "https://testflight.apple.com/join/Srn1BPmR",   // TestFlight herkese açık bağlantısı
-  androidUrl: "",    // Android sürümü çıkınca
+  androidUrl: "https://github.com/alideniz24-24/boyalica-site/releases/latest/download/KOMobile.apk",   // her zaman en son APK (android-vN release)
   discordUrl: "",    // Discord davet bağlantısı
 
   // Haberler ve duyurular news.json dosyasında (oyundaki launcher da oradan okur)

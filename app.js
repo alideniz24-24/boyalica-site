@@ -115,8 +115,41 @@
     $("tab-reg").classList.toggle("on", reg);
     $("login-form").hidden = reg;
     $("reg-form").hidden = !reg;
+    $("forgot-form").hidden = $("reset-form").hidden = true;
     $("l-msg").textContent = $("r-msg").textContent = "";
   }
+  // şifremi unuttum / sıfırlama (#sifirla/<anahtar>, e-postadaki bağlantı)
+  function openForm(id) {
+    modal.hidden = false;
+    ["login-form", "reg-form", "forgot-form", "reset-form"].forEach(function (f) { $(f).hidden = f !== id; });
+    $("tab-login").classList.toggle("on", id !== "reg-form");
+    $("tab-reg").classList.toggle("on", id === "reg-form");
+  }
+  var resetToken = null;
+  $("l-forgot").onclick = function (e) { e.preventDefault(); $("f-msg").textContent = ""; $("f-user").value = $("l-user").value.trim(); openForm("forgot-form"); };
+  $("f-back").onclick = function (e) { e.preventDefault(); openModal(false); };
+  $("forgot-form").onsubmit = function (e) {
+    e.preventDefault();
+    var m = $("f-msg"), btn = this.querySelector("button");
+    m.className = "msg";
+    btn.disabled = true;
+    api("/api/forgot", { user: $("f-user").value.trim().toLowerCase(), email: $("f-email").value.trim() }, function (r) {
+      btn.disabled = false;
+      if (r.ok) { m.className = "msg ok"; m.textContent = r.info || "E-posta gönderildi."; } else m.textContent = r.error || "Gönderilemedi.";
+    });
+  };
+  $("reset-form").onsubmit = function (e) {
+    e.preventDefault();
+    var m = $("x-msg"), btn = this.querySelector("button");
+    m.className = "msg";
+    if ($("x-pass").value !== $("x-pass2").value) { m.textContent = "Şifreler aynı değil."; return; }
+    btn.disabled = true;
+    api("/api/reset", { token: resetToken, pass: $("x-pass").value }, function (r) {
+      btn.disabled = false;
+      if (r.ok) { m.className = "msg ok"; m.textContent = "Şifren değiştirildi. Siteye ve oyuna yeni şifrenle giriş yapabilirsin."; $("reset-form").reset(); resetToken = null; }
+      else m.textContent = r.error || "Şifre değiştirilemedi.";
+    });
+  };
   $("tab-login").onclick = function () { openModal(false); };
   $("tab-reg").onclick = function () { openModal(true); };
   $("modal-x").onclick = function () { modal.hidden = true; };
@@ -157,6 +190,12 @@
   function route() {
     // oyundaki "Kayıt Ol" düğmesi siteyi #kayit ile açar
     if (location.hash === "#kayit") { openModal(true); history.replaceState(null, "", location.pathname); }
+    if (location.hash.indexOf("#sifirla/") === 0) {
+      resetToken = location.hash.substring(9);
+      history.replaceState(null, "", location.pathname);
+      $("x-msg").textContent = "";
+      openForm("reset-form");
+    }
     var prof = location.hash === "#profil" || location.hash.indexOf("#profil/") === 0;
     if (prof && !stored(TK)) { openModal(false); location.hash = "#top"; prof = false; }
     document.body.classList.toggle("in-profile", prof);
@@ -191,6 +230,7 @@
       st.className = "status" + (d.status === "Aktif" ? "" : " bad");
       $("p-name").textContent = d.user;
       $("p-email").textContent = d.email;
+      $("em-now").textContent = d.email || "-";
       $("p-play").textContent = d.playTime;
       $("p-state").textContent = d.status;
       $("p-last").textContent = d.lastLogin;
@@ -224,6 +264,17 @@
       btn.disabled = false;
       if (r.ok) { m.className = "msg ok"; m.textContent = "Şifren değiştirildi. Oyuna yeni şifrenle gir."; $("pw-form").reset(); }
       else m.textContent = r.error || "Şifre değiştirilemedi.";
+    });
+  };
+  $("em-form").onsubmit = function (e) {
+    e.preventDefault();
+    var m = $("em-msg"), btn = this.querySelector("button");
+    m.className = "msg";
+    btn.disabled = true;
+    api("/api/email", { old: $("em-pass").value, email: $("em-new").value.trim() }, function (r) {
+      btn.disabled = false;
+      if (r.ok) { m.className = "msg ok"; m.textContent = "E-posta kaydedildi."; $("em-now").textContent = $("em-new").value.trim(); $("em-form").reset(); }
+      else m.textContent = r.error || "Kaydedilemedi.";
     });
   };
   window.addEventListener("hashchange", route);

@@ -109,6 +109,16 @@
             <p class="msg" id="pw-msg"></p>
           </form>
         </div>
+        <div class="card prof-sec">
+          <h3>E-posta</h3>
+          <p class="note">Şifreni unutursan sıfırlama bağlantısı bu adrese gelir. Kayıtlı adres: <b id="em-now">-</b></p>
+          <form id="em-form" class="form">
+            <input type="email" id="em-new" placeholder="E-posta adresi" autocomplete="email" maxlength="80" required>
+            <input type="password" id="em-pass" placeholder="Mevcut şifre" autocomplete="current-password" required>
+            <button class="btn-gold" type="submit">E-postayı Kaydet</button>
+            <p class="msg" id="em-msg"></p>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -116,14 +126,12 @@
 
 <main id="home">
   <section class="sec" id="haberler">
-    <div class="sec-head"><span class="num">01</span><span class="line"></span></div>
     <h2>Haberler</h2>
     <p class="sub">En son gelişmeler ve güncellemeler</p>
     <div class="news" id="news"></div>
   </section>
 
   <section class="sec" id="siralama">
-    <div class="sec-head"><span class="num">02</span><span class="line"></span></div>
     <h2>Sıralamalar</h2>
     <p class="sub" id="rank-note">Sunucudan güncel veri alınıyor...</p>
     <div class="ranks">
@@ -139,7 +147,6 @@
   </section>
 
   <section class="sec" id="siniflar">
-    <div class="sec-head"><span class="num">03</span><span class="line"></span></div>
     <h2>Karakter Sınıfları</h2>
     <p class="sub">Yolunu seç, savaşın kaderini belirle.</p>
     <div class="classes">
@@ -151,21 +158,18 @@
   </section>
 
   <section class="sec" id="duyurular">
-    <div class="sec-head"><span class="num">04</span><span class="line"></span></div>
     <h2>Duyurular</h2>
     <p class="sub">Önemli güncellemeler ve sistem duyuruları</p>
     <div class="ann" id="ann"></div>
   </section>
 
   <section class="sec" id="galeri">
-    <div class="sec-head"><span class="num">05</span><span class="line"></span></div>
     <h2>Oyun Galerisi</h2>
     <p class="sub">Oyun içi görüntüler</p>
     <div class="gallery" id="gallery"></div>
   </section>
 
   <section class="sec" id="indir">
-    <div class="sec-head"><span class="num">06</span><span class="line"></span></div>
     <div class="card download">
       <div>
         <h2>Hemen İndir</h2>
@@ -174,6 +178,17 @@
           <a class="store" data-link="iosUrl"><span class="ico"><svg viewBox="0 0 24 24" width="26" height="26" fill="#e9e4dc"><path d="M16.4 12.6c0-2.5 2-3.7 2.1-3.8-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.3 10.1.8 1.2 1.8 2.6 3.1 2.5 1.3-.1 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.4-.9-2.4-4.1zM14 5.1c.7-.8 1.1-2 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4z"/></svg></span><span><small>Hemen İndir</small><b>iOS</b></span></a>
           <a class="store" data-link="androidUrl"><span class="ico"><svg viewBox="0 0 24 24" width="26" height="26" fill="#3ddc84"><path d="M17.6 9.5l1.7-3a.4.4 0 0 0-.7-.4l-1.7 3c-1.4-.6-3-1-4.9-1s-3.5.4-4.9 1l-1.7-3a.4.4 0 0 0-.7.4l1.7 3C3.6 11 1.6 13.8 1.4 17h21.2c-.2-3.2-2.2-6-5-7.5zM7 14.4a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm10 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg></span><span><small>Hemen İndir</small><b>Android</b></span></a>
         </div>
+        <details class="guide">
+          <summary>Android kurulum rehberi</summary>
+          <ol>
+            <li>Dosya yaklaşık <b>704 MB</b>. <b>Wi-Fi</b>'de, <b>Chrome</b> ile indir ve indirme bitene kadar ekranı kapatma.</li>
+            <li>İndirme bitince <b>Dosyalar &gt; İndirilenler</b>'den <b>KOMobile.apk</b> dosyasına dokun.</li>
+            <li>Telefon izin isterse <b>Bu kaynaktan yüklemeye izin ver</b>'i aç, geri dön ve <b>Yükle</b>'ye bas.</li>
+            <li><b>"Paket geçersiz"</b> uyarısı çıkarsa dosya eksik inmiştir: dosyayı sil ve tekrar indir (boyutu 704 MB / 671 MB olmalı).</li>
+            <li>Telefonunda oyunun eski bir sürümü varsa önce onu kaldır, sonra yenisini kur.</li>
+          </ol>
+          <p class="note">Android 7.0 ve üzeri, 64 bit telefonlar desteklenir. Hesabın sunucuda saklanır, oyunu silip kurmak karakterlerini silmez.</p>
+        </details>
         <div class="feat">
           <div><b>⚡ Hızlı Kurulum</b><span>Birkaç dakikada oyunda</span></div>
           <div><b>📱 Mobil İçin</b><span>Dokunmatik kontroller</span></div>
@@ -216,11 +231,26 @@
       <input id="l-pass" type="password" placeholder="Şifre" autocomplete="current-password" required>
       <button class="btn-gold" type="submit">Giriş Yap</button>
       <p class="msg" id="l-msg"></p>
-      <p class="hint">Oyundaki hesabınla giriş yapabilirsin.</p>
+      <p class="hint">Oyundaki hesabınla giriş yapabilirsin. <a href="#" id="l-forgot">Şifremi unuttum</a></p>
+    </form>
+    <form id="forgot-form" class="form" hidden>
+      <p class="note">Kullanıcı adını ve hesabındaki e-posta adresini yaz. Bilgiler doğruysa e-postana şifre sıfırlama bağlantısı gelir (30 dakika geçerli).</p>
+      <input id="f-user" placeholder="Kullanıcı adı" autocomplete="username" maxlength="16" required>
+      <input id="f-email" type="email" placeholder="Hesaptaki e-posta" autocomplete="email" maxlength="80" required>
+      <button class="btn-gold" type="submit">Sıfırlama Bağlantısı Gönder</button>
+      <p class="msg" id="f-msg"></p>
+      <p class="hint">E-posta eklemediysen oyun yöneticisine yaz. <a href="#" id="f-back">Girişe dön</a></p>
+    </form>
+    <form id="reset-form" class="form" hidden>
+      <p class="note">Yeni şifreni belirle. Oyunda kayıtlı giriş desenin de sıfırlanır; oyuna yeni şifrenle girip yeni desen oluşturursun.</p>
+      <input id="x-pass" type="password" placeholder="Yeni şifre (en az 4)" autocomplete="new-password" minlength="4" required>
+      <input id="x-pass2" type="password" placeholder="Yeni şifre (tekrar)" autocomplete="new-password" minlength="4" required>
+      <button class="btn-gold" type="submit">Şifreyi Kaydet</button>
+      <p class="msg" id="x-msg"></p>
     </form>
     <form id="reg-form" class="form" hidden>
       <input id="r-user" placeholder="Kullanıcı adı (3-16, a-z 0-9 _)" autocomplete="username" maxlength="16" required>
-      <input id="r-email" type="email" placeholder="E-posta (isteğe bağlı)" autocomplete="email" maxlength="80">
+      <input id="r-email" type="email" placeholder="E-posta (şifreni unutursan buraya bağlantı gelir)" autocomplete="email" maxlength="80" required>
       <input id="r-pass" type="password" placeholder="Şifre (en az 4)" autocomplete="new-password" minlength="4" required>
       <input id="r-pass2" type="password" placeholder="Şifre (tekrar)" autocomplete="new-password" minlength="4" required>
       <label class="check"><input type="checkbox" id="r-rules" required> Oyun kurallarını kabul ediyorum (hile ve hesap paylaşımı yasaktır).</label>

@@ -1,9 +1,9 @@
 {
-  "appVersion": 7,
+  "appVersion": 8,
   "minAppVersion": 7,
   "iosUrl": "https://testflight.apple.com/join/Srn1BPmR",
   "androidUrl": "https://github.com/alideniz24-24/boyalica-site/releases/latest/download/KOMobile.apk",
-  "notes": "Yeni sürüm zorunlu (7): silah iptali (Weapon Cancelation), yay/hançer skill kuralı, yavaşlatmalar KO gibi, joystick sohbet üstünde çalışır, yeni giriş ekranları. ANDROID: yeni imza nedeniyle önce eski oyunu kaldırıp sonra yenisini kurun (hesap ve karakterler sunucuda, kaybolmaz).",
+  "notes": "Yeni sürüm 8: Transformation Scroll (canavar kılığı), etkinlik saatleri penceresi, KO ganimet ve etkinlik pencereleri, oto toplama ayarı, isim/klan adı değiştirme, Berserker ve mage düzeltmeleri, parşömenler harita değişince kalır.",
   "contentVersion": 0,
   "files": []
 }

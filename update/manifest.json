@@ -1,9 +1,9 @@
 {
   "appVersion": 7,
-  "minAppVersion": 6,
+  "minAppVersion": 7,
   "iosUrl": "https://testflight.apple.com/join/Srn1BPmR",
   "androidUrl": "https://github.com/alideniz24-24/boyalica-site/releases/latest/download/KOMobile.apk",
-  "notes": "Yeni sürüm 7: silah iptali (Weapon Cancelation), yay/hançer skill kuralı, yavaşlatmalar KO gibi, joystick sohbet üstünde çalışır, yeni giriş ekranları. ANDROID: yeni imza nedeniyle önce eski oyunu kaldırıp sonra yenisini kurun (hesap ve karakterler sunucuda, kaybolmaz).",
+  "notes": "Yeni sürüm zorunlu (7): silah iptali (Weapon Cancelation), yay/hançer skill kuralı, yavaşlatmalar KO gibi, joystick sohbet üstünde çalışır, yeni giriş ekranları. ANDROID: yeni imza nedeniyle önce eski oyunu kaldırıp sonra yenisini kurun (hesap ve karakterler sunucuda, kaybolmaz).",
   "contentVersion": 0,
   "files": []
 }

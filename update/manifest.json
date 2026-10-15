@@ -1,9 +1,9 @@
 {
-  "appVersion": 8,
-  "minAppVersion": 7,
+  "appVersion": 9,
+  "minAppVersion": 8,
   "iosUrl": "https://testflight.apple.com/join/Srn1BPmR",
   "androidUrl": "https://github.com/alideniz24-24/boyalica-site/releases/latest/download/KOMobile.apk",
-  "notes": "Yeni sürüm 8: Transformation Scroll (canavar kılığı), etkinlik saatleri penceresi, KO ganimet ve etkinlik pencereleri, oto toplama ayarı, isim/klan adı değiştirme, Berserker ve mage düzeltmeleri, parşömenler harita değişince kalır.",
+  "notes": "Yeni sürüm 9: gerçek KO El Morad seçim ekranı (KO kameraları, 4 karakter yuvası), GM paneli, bot ayarı ve düzeltmeler.",
   "contentVersion": 0,
   "files": []
 }

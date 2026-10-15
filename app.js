@@ -62,6 +62,11 @@
       $("rank-players").innerHTML = p.length ? p.map(function (x, i) {
         return "<tr><td class='" + (i < 3 ? "r1" : "") + "'>" + (i + 1) + "</td><td>" + esc(x.name) + "</td><td><span class='race " + esc(x.nation) + "'>" + (x.nation === "KARUS" ? "KARUS" : "EL MORAD") + "</span></td><td>" + x.level + "</td><td>" + fmt(x.np) + "</td></tr>";
       }).join("") : emptyRows("Henüz sıralamada oyuncu yok.");
+      // aylık NP (sunucu eskiyse alan yok)
+      var mo = d.monthly;
+      $("rank-monthly").innerHTML = mo === undefined ? emptyRows("Sunucu güncellemesi bekleniyor.") : mo.length ? mo.map(function (x, i) {
+        return "<tr><td class='" + (i < 3 ? "r1" : "") + "'>" + (i + 1) + "</td><td>" + esc(x.name) + "</td><td><span class='race " + esc(x.nation) + "'>" + (x.nation === "KARUS" ? "KARUS" : "EL MORAD") + "</span></td><td>" + x.level + "</td><td>" + fmt(x.monthly) + "</td></tr>";
+      }).join("") : emptyRows("Bu ay henüz NP kazanan yok.");
       $("rank-clans").innerHTML = c.length ? c.map(function (x, i) {
         return "<tr><td class='" + (i < 3 ? "r1" : "") + "'>" + (i + 1) + "</td><td>" + esc(x.name) + "</td><td><span class='race " + esc(x.nation) + "'>" + (x.nation === "KARUS" ? "KARUS" : "EL MORAD") + "</span></td><td>" + x.members + "</td><td>" + fmt(x.np) + "</td></tr>";
       }).join("") : emptyRows("Henüz klan yok.");
@@ -72,6 +77,7 @@
     $("rank-note").textContent = msg;
     $("rank-players").innerHTML = emptyRows(msg);
     $("rank-clans").innerHTML = emptyRows(msg);
+    $("rank-monthly").innerHTML = emptyRows(msg);
   }
   load();
   setInterval(load, 60000);

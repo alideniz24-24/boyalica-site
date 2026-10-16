@@ -1,6 +1,6 @@
 {
   "appVersion": 10,
-  "minAppVersion": 8,
+  "minAppVersion": 10,
   "iosUrl": "https://testflight.apple.com/join/Srn1BPmR",
   "androidUrl": "https://github.com/alideniz24-24/boyalica-site/releases/latest/download/KOMobile.apk",
   "notes": "Yeni sürüm 10: güncellemeler artık oyunun içinden iner (yeni APK gerekmez), DENZ açılışı, daha küçük APK (257 MB). İlk açılışta oyun dosyaları indirilir (yaklaşık 560 MB, Wi-Fi önerilir).",

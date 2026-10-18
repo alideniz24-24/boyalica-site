@@ -12,6 +12,7 @@ window.BOYALICA = {
   iosUrl: "https://testflight.apple.com/join/Srn1BPmR",   // TestFlight herkese açık bağlantısı
   androidUrl: "https://github.com/alideniz24-24/boyalica-site/releases/latest/download/KOMobile.apk",   // her zaman en son APK (android-vN release)
   discordUrl: "",    // Discord davet bağlantısı
+  instagramUrl: "https://www.instagram.com/theknightonline.com.tr/",   // Instagram hesabı
 
   // Haberler ve duyurular news.json dosyasında (oyundaki launcher da oradan okur)
 

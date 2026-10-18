@@ -117,6 +117,9 @@ td.r1 { color: var(--gold2); font-weight: 700; }
 .dc-txt p { margin: 4px 0 0; color: #c0bfe0; font-size: 14px; }
 .btn-discord { margin-left: auto; background: #5865f2; color: #fff; font-weight: 600; padding: 12px 20px; border-radius: 12px; white-space: nowrap; cursor: pointer; }
 .btn-discord.soon { opacity: .6; cursor: default; }
+.dc-btns { margin-left: auto; display: flex; gap: 10px; flex-wrap: wrap; }
+.dc-btns .btn-discord { margin-left: 0; }
+.btn-insta { background: linear-gradient(45deg, #f09433, #dc2743 50%, #bc1888); color: #fff; font-weight: 600; padding: 12px 20px; border-radius: 12px; white-space: nowrap; cursor: pointer; }
 
 .footer { margin-top: 90px; border-top: 1px solid var(--line); background: var(--bg2); }
 .foot-in { max-width: 1180px; margin: 0 auto; padding: 36px 24px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
@@ -149,6 +152,7 @@ td.r1 { color: var(--gold2); font-weight: 700; }
   .download { padding: 24px; }
   .discord { flex-direction: column; align-items: flex-start; }
   .btn-discord { margin-left: 0; }
+  .dc-btns { margin-left: 0; }
   .hero-bg { inset: 0; background-position: 58% 30%; opacity: .45; }
 }
 

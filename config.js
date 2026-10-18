@@ -18,12 +18,18 @@ window.BOYALICA = {
 
   // Galeri: images klasöründeki görüntüler
   gallery: [
-    { image: "images/karakter.jpg", title: "Karakter Seçimi" },
-    { image: "images/moradon.jpg", title: "Moradon" },
-    { image: "images/ronark.jpg", title: "Ronark Land" },
-    { image: "images/eslant.jpg", title: "Eslant" },
-    { image: "images/emc.jpg", title: "El Morad Castle" },
-    { image: "images/luferson.jpg", title: "Luferson Castle" },
-    { image: "images/delos.jpg", title: "Delos" }
+    { image: "images/karakter.jpg?v=2", title: "Karakter Seçimi" },
+    { image: "images/giris.jpg?v=2", title: "Giriş Ekranı" },
+    { image: "images/moradon.jpg?v=2", title: "Moradon" },
+    { image: "images/emc.jpg?v=2", title: "El Morad Castle" },
+    { image: "images/savas.jpg?v=2", title: "El Morad Castle Savaşı" },
+    { image: "images/ronark.jpg?v=2", title: "Ronark Land" },
+    { image: "images/cz-gorev.jpg?v=2", title: "CZ Savaş Görevi" },
+    { image: "images/ft.jpg?v=2", title: "Forgotten Temple" },
+    { image: "images/juraid.jpg?v=2", title: "Juraid Mountain" },
+    { image: "images/deva.jpg?v=2", title: "Deva. Bird" },
+    { image: "images/delos.jpg?v=2", title: "Delos" },
+    { image: "images/genie.jpg?v=2", title: "Genie Ayarları" },
+    { image: "images/envanter.jpg?v=2", title: "Envanter ve Set" }
   ]
 };

@@ -1,7 +1,7 @@
 // BOYALICA sitesi ayarları — kod bilmeden düzenlenebilir. Değiştirip kaydetmen yeterli.
 window.BOYALICA = {
   // Sunucu adı (oyundaki server listesiyle aynı)
-  serverName: "BOYALICA",
+  serverName: "ANTIGON",
 
   // Oyun sunucusunun site adresi (sıralama, ırk yüzdesi, kayıt / giriş / profil). Sonunda / olmadan.
   // Sunucu bilgisayarında: http://localhost:8090

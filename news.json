@@ -2,9 +2,16 @@
   "_aciklama": "Haberler ve duyurular: site ve oyundaki launcher buradan okur. En yeni üstte. tag: GÜNCELLEME / ETKİNLİK / DUYURU / PVP. image yalnız sitedeki haber kartı için.",
   "news": [
     {
+      "date": "19.10.2026",
+      "tag": "DUYURU",
+      "title": "BOYALICA ARTIK ANTIGON",
+      "text": "Sunucumuzun yeni adı ANTIGON! Hesapların, karakterlerin ve eşyaların aynen duruyor; oyunu güncellemen yeterli. Ronark Land'de görüşürüz.",
+      "image": "images/ronark.jpg"
+    },
+    {
       "date": "10.10.2026",
       "tag": "DUYURU",
-      "title": "BOYALICA KAPILARINI AÇIYOR",
+      "title": "ANTIGON KAPILARINI AÇIYOR",
       "text": "Knight Online deneyimi artık cebinde. Kapalı test TestFlight üzerinden yakında başlıyor; yerini şimdiden ayırt.",
       "image": "images/moradon.jpg"
     },
@@ -37,7 +44,7 @@
     {
       "date": "10.10.2026",
       "title": "Etkinlik saatleri",
-      "text": "Forgotten Temple 08:00 / 23:00, Juraid Mountain 14:00 / 21:00, CZ Savaş Görevi 20:00."
+      "text": "Forgotten Temple 11:00 / 23:00, Juraid Mountain 14:00 / 21:00, CZ Savaş Görevi 12:00 / 19:00."
     },
     {
       "date": "10.10.2026",

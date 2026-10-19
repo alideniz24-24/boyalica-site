@@ -18,7 +18,7 @@
   });
 
   // kayan şerit
-  var words = ["WARRIOR", "ROGUE", "MAGE", "PRIEST", "KARUS", "EL MORAD", C.serverName || "BOYALICA"];
+  var words = ["WARRIOR", "ROGUE", "MAGE", "PRIEST", "KARUS", "EL MORAD", C.serverName || "ANTIGON"];
   var t = "";
   for (var k = 0; k < 4; k++) words.forEach(function (w) { t += "<span>" + esc(w) + "</span><span class='s'>✦</span>"; });
   $("ticker").innerHTML = t + t;

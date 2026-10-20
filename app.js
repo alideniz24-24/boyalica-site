@@ -56,7 +56,6 @@
       var tot = (d.karus || 0) + (d.human || 0);
       $("st-karus").textContent = tot ? "%" + Math.round(d.karus * 100 / tot) : "%0";
       $("st-human").textContent = tot ? "%" + Math.round(d.human * 100 / tot) : "%0";
-      $("st-online").textContent = fmt(d.online);
       $("rank-note").textContent = "Son güncelleme: " + (d.updated || "-");
       var p = d.players || [], c = d.clans || [];
       $("rank-players").innerHTML = p.length ? p.map(function (x, i) {

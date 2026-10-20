@@ -2,6 +2,13 @@
   "_aciklama": "Haberler ve duyurular: site ve oyundaki launcher buradan okur. En yeni üstte. tag: GÜNCELLEME / ETKİNLİK / DUYURU / PVP. image yalnız sitedeki haber kartı için.",
   "news": [
     {
+      "date": "20.10.2026",
+      "tag": "GÜNCELLEME",
+      "title": "Yeni sınıf setleri ve set bonusları",
+      "text": "Her sınıfa kendi KO seti geldi: Warrior için Dragon Scale, Assassin için Mythril, Mage için Ron's, Priest için Trial seti. Aynı setten 2-5 parça giydiğinde KO'daki gibi set bonusu (HP, MP, stat ve direnç) kazanırsın; tam set en güçlü bonusu verir. Güncelleme oyunun içinden otomatik iner. iOS oyuncuları TestFlight'tan en son sürümü (1.0.1022) kursun.",
+      "image": "images/karakter.jpg"
+    },
+    {
       "date": "19.10.2026",
       "tag": "DUYURU",
       "title": "BOYALICA ARTIK ANTIGON",

@@ -36,6 +36,11 @@ h1, h2, h3 { font-family: "Cinzel", serif; margin: 0; letter-spacing: .5px; }
 /* resim tüm genişlikte (geniş ekranda solda boş siyah şerit kalmasın); yazının olduğu sol taraf koyulaştırılır */
 .hero-bg { position: absolute; inset: 0; background: url("images/hero.jpg") right 30% / cover no-repeat; }
 .hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--bg) 0%, rgba(11,10,13,.92) 22%, rgba(11,10,13,.55) 45%, rgba(11,10,13,.1) 70%, rgba(11,10,13,.3) 100%), linear-gradient(0deg, var(--bg) 0%, transparent 30%); }
+/* masaüstü: görselin tamamı (iki karakter) görünsün, sol taraf simsiyah kalmasın */
+@media (min-width: 961px) {
+  .hero-bg { background-position: center 32%; }
+  .hero-bg::after { background: linear-gradient(90deg, rgba(11,10,13,.88) 0%, rgba(11,10,13,.66) 30%, rgba(11,10,13,.3) 55%, rgba(11,10,13,.08) 75%, rgba(11,10,13,.25) 100%), linear-gradient(0deg, var(--bg) 0%, transparent 30%); }
+}
 .hero-in { position: relative; max-width: 1180px; width: 100%; margin: 0 auto; padding: 120px 24px 80px; }
 .kicker { color: var(--gold); letter-spacing: 4px; font-size: 13px; font-weight: 600; margin: 0 0 14px; }
 .hero h1 { font-size: clamp(40px, 7vw, 84px); line-height: 1.05; text-shadow: 0 4px 24px rgba(0,0,0,.6); }

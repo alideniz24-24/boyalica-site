@@ -2,6 +2,13 @@
   "_aciklama": "Haberler ve duyurular: site ve oyundaki launcher buradan okur. En yeni üstte. tag: GÜNCELLEME / ETKİNLİK / DUYURU / PVP. image yalnız sitedeki haber kartı için.",
   "news": [
     {
+      "date": "21.10.2026",
+      "tag": "GÜNCELLEME",
+      "title": "Boss NP ödülü, Bezoar ve Glutinous Rice Cake",
+      "text": "Artık her boss'u kesen oyuncu, drop'a ek olarak 500 NP kazanıyor. Sundries (Tigin) NPC'sinde iki yeni eşya var: Bezoar karakterini 60 saniyeliğine iki katına büyütür, Glutinous Rice Cake yarı boyuna küçültür. Starter Package Power Up Store'dan kaldırıldı. Güncelleme oyunun içinden otomatik iner.",
+      "image": "images/karakter.jpg"
+    },
+    {
       "date": "20.10.2026",
       "tag": "GÜNCELLEME",
       "title": "Krowaz renkleri, çift silah ve ortak Juraid",

@@ -2,6 +2,13 @@
   "_aciklama": "Haberler ve duyurular: site ve oyundaki launcher buradan okur. En yeni üstte. tag: GÜNCELLEME / ETKİNLİK / DUYURU / PVP. image yalnız sitedeki haber kartı için.",
   "news": [
     {
+      "date": "23.10.2026",
+      "tag": "GÜNCELLEME",
+      "title": "Rogue, Mage ve Priest saldırıları güçlendi",
+      "text": "Sınıf dengesi için saldırı becerilerinin hasarı arttı: Priest +%20, Assassin ve Archer +%10, Mage +%25. Ayrıca çeşitli hatalar düzeltildi. Güncelleme oyunun içinden otomatik iner.",
+      "image": "images/karakter.jpg"
+    },
+    {
       "date": "21.10.2026",
       "tag": "GÜNCELLEME",
       "title": "Boss NP ödülü, Bezoar ve Glutinous Rice Cake",

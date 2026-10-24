@@ -2,6 +2,13 @@
   "_aciklama": "Haberler ve duyurular: site ve oyundaki launcher buradan okur. En yeni üstte. tag: GÜNCELLEME / ETKİNLİK / DUYURU / PVP. image yalnız sitedeki haber kartı için.",
   "news": [
     {
+      "date": "24.10.2026",
+      "tag": "GÜNCELLEME",
+      "title": "Ronark Land güncellendi",
+      "text": "Savaş alanı artık tıpkı eski KO'daki gibi: orijinal Ronark Land zemini (gerçek KO renk haritası ve dokuları), KO efektli El Morad ve Karus nöbet kuleleri, iki ırkın üssüne 39 KO yapısı ve uzakları saran KO sisi. Güncelleme oyunun içinden otomatik iner.",
+      "image": "images/ronark_guncel.jpg"
+    },
+    {
       "date": "23.10.2026",
       "tag": "GÜNCELLEME",
       "title": "Rogue, Mage ve Priest saldırıları güçlendi",
@@ -59,6 +66,11 @@
     }
   ],
   "announcements": [
+    {
+      "date": "24.10.2026",
+      "title": "Ronark Land güncellendi",
+      "text": "Orijinal KO zemini, yeni nöbet kuleleri, yenilenen üsler ve KO sisi. Gir, setini kuşan, Ronark Land'e çık!"
+    },
     {
       "date": "10.10.2026",
       "title": "Kapalı test",

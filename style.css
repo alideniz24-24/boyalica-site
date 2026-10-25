@@ -1,12 +1,12 @@
 :root {
-  --bg: #0b0a0d;
-  --bg2: #141217;
-  --card: #17141b;
-  --line: #2a2530;
+  --bg: #07070a;
+  --bg2: #0f0f14;
+  --card: #121218;
+  --line: #26242c;
   --text: #e9e4dc;
   --muted: #9a92a0;
-  --gold: #e8b54a;
-  --gold2: #f6d58a;
+  --gold: #ffc81e;
+  --gold2: #ffe680;
   --green: #1fb36b;
   --red: #e0453a;
   --blue: #3c8ce7;
@@ -15,14 +15,14 @@
 html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--bg); color: var(--text); font-family: "Poppins", system-ui, sans-serif; line-height: 1.55; padding-bottom: 44px; }
 a { color: inherit; text-decoration: none; }
-h1, h2, h3 { font-family: "Cinzel", serif; margin: 0; letter-spacing: .5px; }
+h1, h2, h3 { font-family: "Orbitron", sans-serif; margin: 0; letter-spacing: .5px; }
 .gold { color: var(--gold); }
 
 /* üst menü */
 .nav { position: fixed; inset: 0 0 auto 0; z-index: 50; padding: 12px 16px; }
 .nav-in { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; gap: 18px; background: rgba(15, 13, 18, .82); backdrop-filter: blur(10px); border: 1px solid var(--line); border-radius: 14px; padding: 10px 16px; }
 .logo { display: flex; flex-direction: column; line-height: 1; }
-.logo-main { font-family: "Cinzel", serif; font-weight: 800; font-size: 22px; letter-spacing: 2px; background: linear-gradient(180deg, var(--gold2), var(--gold) 55%, #9c6b1f); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.logo-main { font-family: "Orbitron", sans-serif; font-weight: 800; font-size: 22px; letter-spacing: 2px; background: linear-gradient(180deg, var(--gold2), var(--gold) 55%, #9c6b1f); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .logo-main.big { font-size: clamp(34px, 6vw, 64px); }
 .logo-sub { font-size: 9px; letter-spacing: 3px; color: var(--muted); margin-top: 3px; }
 .menu { display: flex; gap: 22px; margin-left: 18px; font-size: 14px; font-weight: 500; }
@@ -55,7 +55,7 @@ h1, h2, h3 { font-family: "Cinzel", serif; margin: 0; letter-spacing: .5px; }
 .store.soon small::after { content: " · Yakında"; color: var(--gold); }
 
 .ticker { position: relative; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(20, 18, 23, .9); overflow: hidden; white-space: nowrap; }
-.ticker-track { display: inline-block; padding: 14px 0; animation: tick 40s linear infinite; font-family: "Cinzel", serif; font-weight: 800; letter-spacing: 3px; color: #4a4250; }
+.ticker-track { display: inline-block; padding: 14px 0; animation: tick 40s linear infinite; font-family: "Orbitron", sans-serif; font-weight: 800; letter-spacing: 3px; color: #4a4250; }
 .ticker-track span { margin: 0 22px; }
 .ticker-track .s { color: var(--gold); }
 @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -93,7 +93,7 @@ td.r1 { color: var(--gold2); font-weight: 700; }
 .classes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .cls { padding: 24px 20px; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(160deg, #1d1922, #121015); position: relative; overflow: hidden; transition: border-color .2s, transform .2s; }
 .cls:hover { border-color: var(--gold); transform: translateY(-4px); }
-.cls-n { position: absolute; right: 14px; top: 6px; font-family: "Cinzel", serif; font-size: 54px; color: rgba(232, 181, 74, .1); font-weight: 800; }
+.cls-n { position: absolute; right: 14px; top: 6px; font-family: "Orbitron", sans-serif; font-size: 54px; color: rgba(232, 181, 74, .1); font-weight: 800; }
 .cls h3 { font-size: 22px; color: var(--gold); margin: 6px 0 10px; }
 .cls p { color: #c2bac6; font-size: 14px; margin: 0; }
 
@@ -235,7 +235,7 @@ td.r1 { color: var(--gold2); font-weight: 700; }
 .prof-info dd::before { content: attr(data-l); display: block; font-size: 10px; letter-spacing: 1.5px; color: var(--muted); font-weight: 600; text-transform: uppercase; margin-bottom: 4px; }
 .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; text-align: center; }
 .stats > div { background: #0f0d12; border: 1px solid var(--line); border-radius: 12px; padding: 14px 6px; }
-.stats b { display: block; font-family: "Cinzel", serif; font-size: 24px; color: var(--gold2); white-space: nowrap; }
+.stats b { display: block; font-family: "Orbitron", sans-serif; font-size: 24px; color: var(--gold2); white-space: nowrap; }
 .stats span { font-size: 12px; color: var(--muted); }
 .note { color: var(--muted); font-size: 13px; margin: -6px 0 14px; }
 .prof-sec .form { max-width: 420px; }
@@ -246,7 +246,7 @@ td.r1 { color: var(--gold2); font-weight: 700; }
 .char-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
 .char-top h3 { font-family: "Poppins", sans-serif; font-size: 17px; font-weight: 700; word-break: break-all; }
 .char-top .race { margin-left: auto; }
-.char-ico { width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: "Cinzel", serif; font-weight: 800; font-size: 20px; background: rgba(232,181,74,.12); color: var(--gold); border: 1px solid rgba(232,181,74,.3); }
+.char-ico { width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: "Orbitron", sans-serif; font-weight: 800; font-size: 20px; background: rgba(232,181,74,.12); color: var(--gold); border: 1px solid rgba(232,181,74,.3); }
 .char-job { color: var(--muted); font-size: 13px; }
 .char-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 0; text-align: center; }
 .char-stats dt { grid-row: 1; font-size: 11px; color: var(--muted); }
@@ -277,3 +277,66 @@ body.in-profile .hero, body.in-profile #home { display: none; }
 .guide ol { margin: 10px 0 8px; padding-left: 20px; font-size: 14px; color: var(--text); }
 .guide li { margin: 4px 0; }
 .guide .note { margin: 6px 0 0; }
+
+/* komobileonline benzeri görünüm (2026-10-25): simsiyah zemin, parlak altın, Orbitron büyük harf başlıklar, ortalı giriş */
+h1, h2, h3 { text-transform: uppercase; letter-spacing: 1px; }
+.sec h2 { font-weight: 900; background: linear-gradient(180deg, #fff 0%, #fff 45%, var(--gold) 46%, #ff9d00 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sec-head { gap: 14px; }
+.sec-head .num { font-family: "Orbitron", sans-serif; font-size: 15px; font-weight: 800; color: var(--gold); text-shadow: 0 0 12px rgba(255,200,30,.5); }
+.sec-head .line { width: 90px; height: 2px; opacity: 1; background: linear-gradient(90deg, var(--gold), transparent); }
+.card { background: linear-gradient(180deg, #14141b, #0c0c11); border-color: #23222a; box-shadow: 0 10px 40px rgba(0,0,0,.4); }
+.hero { text-align: center; }
+.hero-bg::after { background: radial-gradient(ellipse at center, rgba(7,7,10,.35) 0%, rgba(7,7,10,.75) 70%, var(--bg) 100%), linear-gradient(0deg, var(--bg) 0%, transparent 35%) !important; }
+.hero-in { display: flex; flex-direction: column; align-items: center; }
+.kicker { display: flex; align-items: center; gap: 12px; font-family: "Orbitron", sans-serif; letter-spacing: 5px; }
+.kicker .kd { width: 34px; height: 2px; background: var(--gold); box-shadow: 0 0 8px var(--gold); }
+.hero h1 { font-weight: 900; font-size: clamp(34px, 7vw, 86px); }
+.hero h1 .h-w { color: #fff; }
+.hero h1 .h-g { background: linear-gradient(180deg, var(--gold2), var(--gold) 50%, #ff9000); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 18px rgba(255,180,0,.35)); }
+.lead { margin-left: auto; margin-right: auto; max-width: 560px; }
+.dl { justify-content: center; }
+.store { background: rgba(10,10,14,.8); }
+.store.reg { background: linear-gradient(180deg, var(--gold2), var(--gold) 55%, #ffa000); border-color: transparent; color: #140e00; box-shadow: 0 8px 26px rgba(255,190,0,.35); }
+.store.reg small { color: #3a2a00; }
+.btn-green { background: linear-gradient(180deg, var(--gold2), var(--gold)); color: #140e00; box-shadow: 0 6px 18px rgba(255,200,30,.3); }
+.ticker-track { color: #2e2c36; }
+
+/* sıralama kartları: başlık + Tümünü Gör, ilk 3 madalya */
+.tc-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.tc-head h3 { margin: 0; font-size: 15px; flex: 1; min-width: 0; }
+.tc-ico { width: 34px; height: 34px; flex-shrink: 0; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: rgba(255,200,30,.1); border: 1px solid rgba(255,200,30,.3); color: var(--gold); font-size: 16px; }
+.see-all { flex-shrink: 0; background: transparent; border: 1px solid var(--gold); color: var(--gold); font: inherit; font-size: 12px; font-weight: 700; padding: 6px 11px; border-radius: 8px; cursor: pointer; transition: background .2s, color .2s; }
+.see-all:hover { background: var(--gold); color: #140e00; }
+td.rk { width: 44px; font-weight: 700; color: var(--muted); }
+.medal { display: inline-flex; width: 26px; height: 26px; border-radius: 50%; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: #140e00; }
+.medal.m1 { background: linear-gradient(180deg, #fff1a0, #ffc81e 60%, #e09000); box-shadow: 0 0 10px rgba(255,200,30,.5); }
+.medal.m2 { background: linear-gradient(180deg, #ffffff, #c9ced6 60%, #8d939c); }
+.medal.m3 { background: linear-gradient(180deg, #ffd2a6, #d0884a 60%, #8f5523); }
+tbody tr:hover td { background: rgba(255,200,30,.04); }
+
+/* "Tümünü Gör" penceresi */
+.all-box { max-width: 760px; max-height: calc(100vh - 32px); display: flex; flex-direction: column; }
+.all-title { font-size: 18px; color: var(--gold); margin-bottom: 14px; }
+.all-tools { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.all-tools input { flex: 1; min-width: 160px; background: #0b0b10; border: 1px solid var(--line); color: var(--text); border-radius: 10px; padding: 10px 12px; font: inherit; font-size: 14px; }
+.all-tools input:focus { outline: none; border-color: var(--gold); }
+.all-race { display: flex; gap: 6px; }
+.all-race button { background: rgba(255,255,255,.04); border: 1px solid var(--line); color: var(--muted); font: inherit; font-size: 12px; font-weight: 600; padding: 8px 12px; border-radius: 20px; cursor: pointer; }
+.all-race button.on { border-color: var(--gold); color: var(--gold); background: rgba(255,200,30,.08); }
+.all-count { margin: 10px 0 6px; font-size: 12px; color: var(--muted); }
+.all-scroll { overflow: auto; flex: 1; min-height: 160px; border-top: 1px solid var(--line); }
+.all-scroll thead th { position: sticky; top: 0; background: #111117; z-index: 1; }
+@media (max-width: 600px) {
+  .all-box { padding: 18px 14px; }
+  .all-race { width: 100%; }
+  .all-race button { flex: 1; }
+  .all-scroll table { font-size: 13px; }
+  .tc-head h3 { font-size: 13px; }
+}
+.race { white-space: nowrap; display: inline-block; }
+@media (max-width: 600px) {
+  .table-card { padding: 16px 12px; }
+  .table-card td, .table-card th, .all-scroll td, .all-scroll th { padding-left: 4px; padding-right: 4px; }
+  .race { font-size: 10px; padding: 3px 6px; }
+  td.rk { width: 34px; }
+}

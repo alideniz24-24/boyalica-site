@@ -47,6 +47,9 @@
   lb.onclick = function () { lb.classList.remove("open"); };
 
   // sunucu verisi: sıralama + ırk yüzdesi + çevrimiçi (sahte veri yok: alınamazsa boş gösterilir)
+  // sıra: ilk 3 madalya (altın / gümüş / bronz)
+  function rk(i) { return "<td class='rk'>" + (i < 3 ? "<span class='medal m" + (i + 1) + "'>" + (i + 1) + "</span>" : (i + 1)) + "</td>"; }
+  function race(n) { return "<span class='race " + esc(n) + "'>" + (n === "KARUS" ? "KARUS" : "EL MORAD") + "</span>"; }
   function emptyRows(msg) { return "<tr><td colspan='5' class='empty'>" + esc(msg) + "</td></tr>"; }
   function load() {
     if (!C.apiBase) { setOffline("Sunucu adresi ayarlanmadı."); return; }
@@ -59,15 +62,15 @@
       $("rank-note").textContent = "Son güncelleme: " + (d.updated || "-");
       var p = d.players || [], c = d.clans || [];
       $("rank-players").innerHTML = p.length ? p.map(function (x, i) {
-        return "<tr><td class='" + (i < 3 ? "r1" : "") + "'>" + (i + 1) + "</td><td>" + esc(x.name) + "</td><td><span class='race " + esc(x.nation) + "'>" + (x.nation === "KARUS" ? "KARUS" : "EL MORAD") + "</span></td><td>" + x.level + "</td><td>" + fmt(x.np) + "</td></tr>";
+        return "<tr>" + rk(i) + "<td>" + esc(x.name) + "</td><td>" + race(x.nation) + "</td><td>" + x.level + "</td><td>" + fmt(x.np) + "</td></tr>";
       }).join("") : emptyRows("Henüz sıralamada oyuncu yok.");
       // aylık NP (sunucu eskiyse alan yok)
       var mo = d.monthly;
       $("rank-monthly").innerHTML = mo === undefined ? emptyRows("Sunucu güncellemesi bekleniyor.") : mo.length ? mo.map(function (x, i) {
-        return "<tr><td class='" + (i < 3 ? "r1" : "") + "'>" + (i + 1) + "</td><td>" + esc(x.name) + "</td><td><span class='race " + esc(x.nation) + "'>" + (x.nation === "KARUS" ? "KARUS" : "EL MORAD") + "</span></td><td>" + x.level + "</td><td>" + fmt(x.monthly) + "</td></tr>";
+        return "<tr>" + rk(i) + "<td>" + esc(x.name) + "</td><td>" + race(x.nation) + "</td><td>" + x.level + "</td><td>" + fmt(x.monthly) + "</td></tr>";
       }).join("") : emptyRows("Bu ay henüz NP kazanan yok.");
       $("rank-clans").innerHTML = c.length ? c.map(function (x, i) {
-        return "<tr><td class='" + (i < 3 ? "r1" : "") + "'>" + (i + 1) + "</td><td>" + esc(x.name) + "</td><td><span class='race " + esc(x.nation) + "'>" + (x.nation === "KARUS" ? "KARUS" : "EL MORAD") + "</span></td><td>" + x.members + "</td><td>" + fmt(x.np) + "</td></tr>";
+        return "<tr>" + rk(i) + "<td>" + esc(x.name) + "</td><td>" + race(x.nation) + "</td><td>" + x.members + "</td><td>" + fmt(x.np) + "</td></tr>";
       }).join("") : emptyRows("Henüz klan yok.");
     }).catch(function () { setOffline("Sunucuya şu an ulaşılamıyor."); });
   }
@@ -80,6 +83,51 @@
   }
   load();
   setInterval(load, 60000);
+
+  // "Tümünü Gör": bütün oyuncular / aylık NP / klanlar (sunucu /api/all.json), arama + ırk süzgeci
+  var allData = null, allTab = "players", allRace = "", allAt = 0;
+  var allCols = {
+    players: ["#", "Oyuncu", "Irk", "Seviye", "NP"],
+    monthly: ["#", "Oyuncu", "Irk", "Seviye", "Bu Ay NP"],
+    clans: ["#", "Klan", "Irk", "Üye", "Toplam NP"]
+  };
+  function renderAll() {
+    $("all-head").innerHTML = "<tr>" + allCols[allTab].map(function (c) { return "<th>" + c + "</th>"; }).join("") + "</tr>";
+    if (!allData) { $("all-body").innerHTML = emptyRows("Yükleniyor..."); $("all-count").textContent = ""; return; }
+    var list = allData[allTab] || [], q = $("all-q").value.trim().toLocaleLowerCase("tr-TR"), rows = [];
+    list.forEach(function (x, i) {
+      if (allRace && x.nation !== allRace) return;
+      if (q && String(x.name).toLocaleLowerCase("tr-TR").indexOf(q) < 0) return;
+      var last = allTab === "clans" ? [x.members, fmt(x.np)] : [x.level, fmt(allTab === "monthly" ? x.monthly : x.np)];
+      rows.push("<tr>" + rk(i) + "<td>" + esc(x.name) + "</td><td>" + race(x.nation) + "</td><td>" + last[0] + "</td><td>" + last[1] + "</td></tr>");
+    });
+    $("all-body").innerHTML = rows.length ? rows.join("") : emptyRows(list.length ? "Aramaya uyan kayıt yok." : "Henüz kayıt yok.");
+    $("all-count").textContent = rows.length + " / " + list.length + " kayıt · Son güncelleme: " + (allData.updated || "-");
+  }
+  function openAll(tab) {
+    allTab = tab;
+    document.querySelectorAll("#all-tabs button").forEach(function (b) { b.classList.toggle("on", b.getAttribute("data-t") === tab); });
+    $("all-modal").hidden = false;
+    renderAll();
+    if (allData && Date.now() - allAt < 60000) return;
+    if (!C.apiBase) { allData = { players: [], monthly: [], clans: [] }; renderAll(); return; }
+    fetch(C.apiBase + "/api/all.json", { cache: "no-store" }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (d) {
+      if (!d || !d.players) throw 0;
+      allData = d; allAt = Date.now(); renderAll();
+    }).catch(function () { $("all-body").innerHTML = emptyRows("Tüm liste için sunucu güncellemesi bekleniyor."); });
+  }
+  document.querySelectorAll(".see-all").forEach(function (b) { b.onclick = function () { openAll(b.getAttribute("data-all")); }; });
+  document.querySelectorAll("#all-tabs button").forEach(function (b) { b.onclick = function () { openAll(b.getAttribute("data-t")); }; });
+  document.querySelectorAll("#all-race button").forEach(function (b) {
+    b.onclick = function () {
+      allRace = b.getAttribute("data-r");
+      document.querySelectorAll("#all-race button").forEach(function (o) { o.classList.toggle("on", o === b); });
+      renderAll();
+    };
+  });
+  $("all-q").oninput = renderAll;
+  $("all-x").onclick = function () { $("all-modal").hidden = true; };
+  $("all-modal").onclick = function (e) { if (e.target === $("all-modal")) $("all-modal").hidden = true; };
 
   // ---------- hesap: kayıt / giriş / profil (oyun hesabıyla aynı) ----------
   var TK = "boyalica.token", UK = "boyalica.user";
@@ -157,6 +205,7 @@
   };
   $("tab-login").onclick = function () { openModal(false); };
   $("tab-reg").onclick = function () { openModal(true); };
+  $("hero-reg").onclick = function () { openModal(true); };
   $("modal-x").onclick = function () { modal.hidden = true; };
   modal.onclick = function (e) { if (e.target === modal) modal.hidden = true; };
 

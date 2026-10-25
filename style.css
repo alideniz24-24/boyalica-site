@@ -340,3 +340,24 @@ tbody tr:hover td { background: rgba(255,200,30,.04); }
   .race { font-size: 10px; padding: 3px 6px; }
   td.rk { width: 34px; }
 }
+
+/* KO NP simgesi + yana kaydırmasız tablo (2026-10-25) */
+.table-card { overflow-x: visible; }
+.table-card table, .all-scroll table { table-layout: fixed; }
+.table-card th:nth-child(1), .all-scroll th:nth-child(1) { width: 40px; }
+.table-card th:nth-child(3), .all-scroll th:nth-child(3) { width: 82px; }
+.table-card th:nth-child(4), .all-scroll th:nth-child(4) { width: 40px; }
+.table-card th:nth-child(5), .all-scroll th:nth-child(5) { width: 82px; text-align: right; }
+.table-card td:nth-child(5), .all-scroll td:nth-child(5) { text-align: right; white-space: nowrap; }
+td.nm div { display: flex; align-items: center; gap: 6px; min-width: 0; }
+td.nm span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.npsym { width: 22px; height: 22px; flex-shrink: 0; image-rendering: auto; }
+@media (max-width: 600px) {
+  .table-card th:nth-child(1), .all-scroll th:nth-child(1) { width: 32px; }
+  .table-card th:nth-child(3), .all-scroll th:nth-child(3) { width: 66px; }
+  .table-card th:nth-child(4), .all-scroll th:nth-child(4) { width: 30px; }
+  .table-card th:nth-child(5), .all-scroll th:nth-child(5) { width: 68px; }
+  .table-card table, .all-scroll table { font-size: 13px; }
+  .npsym { width: 18px; height: 18px; }
+  .medal { width: 22px; height: 22px; font-size: 11px; }
+}

@@ -50,6 +50,17 @@
   // sıra: ilk 3 madalya (altın / gümüş / bronz)
   function rk(i) { return "<td class='rk'>" + (i < 3 ? "<span class='medal m" + (i + 1) + "'>" + (i + 1) + "</span>" : (i + 1)) + "</td>"; }
   function race(n) { return "<span class='race " + esc(n) + "'>" + (n === "KARUS" ? "KARUS" : "EL MORAD") + "</span>"; }
+  // oyundaki KO NP simgesi (OfflineNetRank ile aynı): ırk içi sıra; ulusal (toplam NP, sarı kareli) ilk 100, aylık (karesiz) ilk 200
+  function tier(r, monthly) { return r === 1 ? 1 : r <= 4 ? 2 : r <= 9 ? 3 : r <= 25 ? 4 : r <= (monthly ? 100 : 50) ? 5 : r <= (monthly ? 200 : 100) ? 6 : 0; }
+  function symbols(list, kind) {
+    var seen = {};
+    return list.map(function (x) {
+      var r = seen[x.nation] = (seen[x.nation] || 0) + 1;
+      var t = kind === "clans" || (kind === "monthly" ? !(x.monthly > 0) : !(x.np > 0)) ? 0 : tier(r, kind === "monthly");
+      return t ? "<img class='npsym' src='images/rank/" + (kind === "monthly" ? "aylik_" : "ulusal_") + t + ".png' alt=''>" : "";
+    });
+  }
+  function nameCell(name, sym) { return "<td class='nm'><div>" + (sym || "") + "<span>" + esc(name) + "</span></div></td>"; }
   function emptyRows(msg) { return "<tr><td colspan='5' class='empty'>" + esc(msg) + "</td></tr>"; }
   function load() {
     if (!C.apiBase) { setOffline("Sunucu adresi ayarlanmadı."); return; }
@@ -61,16 +72,17 @@
       $("st-human").textContent = tot ? "%" + Math.round(d.human * 100 / tot) : "%0";
       $("rank-note").textContent = "Son güncelleme: " + (d.updated || "-");
       var p = d.players || [], c = d.clans || [];
+      var ps = symbols(p, "players");
       $("rank-players").innerHTML = p.length ? p.map(function (x, i) {
-        return "<tr>" + rk(i) + "<td>" + esc(x.name) + "</td><td>" + race(x.nation) + "</td><td>" + x.level + "</td><td>" + fmt(x.np) + "</td></tr>";
+        return "<tr>" + rk(i) + nameCell(x.name, ps[i]) + "<td>" + race(x.nation) + "</td><td>" + x.level + "</td><td>" + fmt(x.np) + "</td></tr>";
       }).join("") : emptyRows("Henüz sıralamada oyuncu yok.");
       // aylık NP (sunucu eskiyse alan yok)
       var mo = d.monthly;
-      $("rank-monthly").innerHTML = mo === undefined ? emptyRows("Sunucu güncellemesi bekleniyor.") : mo.length ? mo.map(function (x, i) {
-        return "<tr>" + rk(i) + "<td>" + esc(x.name) + "</td><td>" + race(x.nation) + "</td><td>" + x.level + "</td><td>" + fmt(x.monthly) + "</td></tr>";
+      $("rank-monthly").innerHTML = mo === undefined ? emptyRows("Sunucu güncellemesi bekleniyor.") : mo.length ? mo.map(function (x, i, a) {
+        return "<tr>" + rk(i) + nameCell(x.name, symbols(a, "monthly")[i]) + "<td>" + race(x.nation) + "</td><td>" + x.level + "</td><td>" + fmt(x.monthly) + "</td></tr>";
       }).join("") : emptyRows("Bu ay henüz NP kazanan yok.");
       $("rank-clans").innerHTML = c.length ? c.map(function (x, i) {
-        return "<tr>" + rk(i) + "<td>" + esc(x.name) + "</td><td>" + race(x.nation) + "</td><td>" + x.members + "</td><td>" + fmt(x.np) + "</td></tr>";
+        return "<tr>" + rk(i) + nameCell(x.name) + "<td>" + race(x.nation) + "</td><td>" + x.members + "</td><td>" + fmt(x.np) + "</td></tr>";
       }).join("") : emptyRows("Henüz klan yok.");
     }).catch(function () { setOffline("Sunucuya şu an ulaşılamıyor."); });
   }
@@ -87,19 +99,19 @@
   // "Tümünü Gör": bütün oyuncular / aylık NP / klanlar (sunucu /api/all.json), arama + ırk süzgeci
   var allData = null, allTab = "players", allRace = "", allAt = 0;
   var allCols = {
-    players: ["#", "Oyuncu", "Irk", "Seviye", "NP"],
-    monthly: ["#", "Oyuncu", "Irk", "Seviye", "Bu Ay NP"],
-    clans: ["#", "Klan", "Irk", "Üye", "Toplam NP"]
+    players: ["#", "Oyuncu", "Irk", "Lv", "NP"],
+    monthly: ["#", "Oyuncu", "Irk", "Lv", "Aylık NP"],
+    clans: ["#", "Klan", "Irk", "Üye", "NP"]
   };
   function renderAll() {
     $("all-head").innerHTML = "<tr>" + allCols[allTab].map(function (c) { return "<th>" + c + "</th>"; }).join("") + "</tr>";
     if (!allData) { $("all-body").innerHTML = emptyRows("Yükleniyor..."); $("all-count").textContent = ""; return; }
-    var list = allData[allTab] || [], q = $("all-q").value.trim().toLocaleLowerCase("tr-TR"), rows = [];
+    var list = allData[allTab] || [], sy = symbols(list, allTab), q = $("all-q").value.trim().toLocaleLowerCase("tr-TR"), rows = [];
     list.forEach(function (x, i) {
       if (allRace && x.nation !== allRace) return;
       if (q && String(x.name).toLocaleLowerCase("tr-TR").indexOf(q) < 0) return;
       var last = allTab === "clans" ? [x.members, fmt(x.np)] : [x.level, fmt(allTab === "monthly" ? x.monthly : x.np)];
-      rows.push("<tr>" + rk(i) + "<td>" + esc(x.name) + "</td><td>" + race(x.nation) + "</td><td>" + last[0] + "</td><td>" + last[1] + "</td></tr>");
+      rows.push("<tr>" + rk(i) + nameCell(x.name, sy[i]) + "<td>" + race(x.nation) + "</td><td>" + last[0] + "</td><td>" + last[1] + "</td></tr>");
     });
     $("all-body").innerHTML = rows.length ? rows.join("") : emptyRows(list.length ? "Aramaya uyan kayıt yok." : "Henüz kayıt yok.");
     $("all-count").textContent = rows.length + " / " + list.length + " kayıt · Son güncelleme: " + (allData.updated || "-");

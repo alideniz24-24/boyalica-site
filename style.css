@@ -121,6 +121,7 @@ td.r1 { color: var(--gold2); font-weight: 700; }
 .dc-txt h3 { font-size: 22px; }
 .dc-txt p { margin: 4px 0 0; color: #c0bfe0; font-size: 14px; }
 .btn-discord { margin-left: auto; background: #5865f2; color: #fff; font-weight: 600; padding: 12px 20px; border-radius: 12px; white-space: nowrap; cursor: pointer; }
+.btn-wa { background: #25d366; color: #fff; font-weight: 600; padding: 12px 20px; border-radius: 12px; white-space: nowrap; cursor: pointer; }
 .btn-discord.soon { opacity: .6; cursor: default; }
 .dc-btns { margin-left: auto; display: flex; gap: 10px; flex-wrap: wrap; }
 .dc-btns .btn-discord { margin-left: 0; }

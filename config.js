@@ -11,6 +11,7 @@ window.BOYALICA = {
   // İndirme / topluluk linkleri. Boş bırakılan düğme "Yakında" olarak görünür.
   iosUrl: "https://testflight.apple.com/join/Srn1BPmR",   // TestFlight herkese açık bağlantısı
   androidUrl: "https://github.com/alideniz24-24/boyalica-site/releases/latest/download/KOMobile.apk",   // her zaman en son APK (android-vN release)
+  whatsappUrl: "https://chat.whatsapp.com/IKwWSXgbahk7n5P8RgEK0t",   // WhatsApp topluluğu
   discordUrl: "",    // Discord davet bağlantısı
   instagramUrl: "https://www.instagram.com/theknightonline.com.tr/",   // Instagram hesabı
 

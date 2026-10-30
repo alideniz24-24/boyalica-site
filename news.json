@@ -2,6 +2,13 @@
   "_aciklama": "Haberler ve duyurular: site ve oyundaki launcher buradan okur. En yeni üstte. tag: GÜNCELLEME / ETKİNLİK / DUYURU / PVP. image yalnız sitedeki haber kartı için.",
   "news": [
     {
+      "date": "30.10.2026",
+      "tag": "GÜNCELLEME",
+      "title": "Artı sınırı +9, CZ Görev Ustası ve 2.000 Knight Cash",
+      "text": "Eşya ve zırhlarda en yüksek artı artık +9. Elindeki +10 eşyalar +9'a, +11 üstü Rebirth eşyalar Rebirth +11'e indirildi; eldeki Trina's Piece, Blessed Upgrade Scroll ve Rebirth Item Strengthen Scroll bir kez silindi. Bu kağıtlar artık yalnız Ronark Land'deki Görev Ustası'ndan (günde 3 görev: 50 canavar ya da 25 düşman oyuncu, ödülünü sen seçersin), Power Up Store'dan ve boss'lardan (%3) gelir. Blessed Upgrade Scroll artık her sınıf eşyayı yükseltir. Draki ve günlük Reb görevi de Görev Ustası'na taşındı. Tears of Karivdis ile Rebirth güçlendirme şansı %48. Herkesin Knight Cash'i bir kez 2.000'e çekildi, yeni hesaplar da 2.000 ile başlar. Alan becerileri: tuşu basılı tut, parmağını kaydırarak daireyi gezdir, bırakınca beceri atılır. Stat sıfırlamak için önce bütün eşyaları çıkarmak gerekir. Reverse Life rakibin HP artıran parşömenlerini de siler. Güncelleme oyunun içinden otomatik iner.",
+      "image": "images/karakter.jpg"
+    },
+    {
       "date": "24.10.2026",
       "tag": "GÜNCELLEME",
       "title": "Ronark Land güncellendi",

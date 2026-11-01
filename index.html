@@ -278,11 +278,19 @@
       <input id="r-email" type="email" placeholder="E-posta (şifreni unutursan buraya bağlantı gelir)" autocomplete="email" maxlength="80" required>
       <input id="r-pass" type="password" placeholder="Şifre (en az 4)" autocomplete="new-password" minlength="4" required>
       <input id="r-pass2" type="password" placeholder="Şifre (tekrar)" autocomplete="new-password" minlength="4" required>
-      <label class="check"><input type="checkbox" id="r-rules" required> Oyun kurallarını kabul ediyorum (hile ve hesap paylaşımı yasaktır).</label>
+      <label class="check"><input type="checkbox" id="r-rules" required> <span><a href="#" id="r-terms">Kullanıcı Sözleşmesi</a>'ni okudum ve tüm maddelerini kabul ediyorum (hile ve hesap paylaşımı yasaktır).</span></label>
       <button class="btn-gold" type="submit">Kayıt Ol</button>
       <p class="msg" id="r-msg"></p>
       <p class="hint">Bu hesapla oyuna da giriş yaparsın.</p>
     </form>
+  </div>
+</div>
+
+<div class="modal" id="terms-modal" hidden>
+  <div class="modal-box card terms-box">
+    <button class="modal-x" id="terms-x" aria-label="Kapat">✕</button>
+    <div class="terms-text" id="terms-text">Yükleniyor...</div>
+    <button class="btn-gold" type="button" id="terms-ok">Okudum, Kabul Ediyorum</button>
   </div>
 </div>
 

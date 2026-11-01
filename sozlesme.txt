@@ -1,0 +1,61 @@
+ANTIGON KULLANICI SÖZLEŞMESİ
+Sürüm 1 — Yürürlük tarihi: 31.10.2026
+
+Bu sözleşme, ANTIGON oyununu, internet sitesini (theknightonline.com.tr), oyun istemcisini ve bunlara bağlı tüm hizmetleri ("Hizmet") yöneten ANTIGON yönetimi ("Yönetim") ile hesap açan ya da Hizmeti kullanan kişi ("Kullanıcı") arasındaki şartları düzenler. Hesap açarak, "Kabul ediyorum" kutusunu işaretleyerek veya Hizmeti kullanarak bu sözleşmenin tamamını okuduğunu, anladığını ve kabul ettiğini beyan edersin. Kabul etmiyorsan hesap açma ve Hizmeti kullanma.
+
+1. HİZMETİN NİTELİĞİ
+1.1. ANTIGON, gönüllülük esasıyla işletilen, bağımsız ve ücretsiz bir eğlence hizmetidir. Hizmet bir ticari taahhüt, yatırım aracı veya kazanç kaynağı değildir.
+1.2. ANTIGON; Knight Online oyununun hak sahipleriyle (NTTGame, Mgame veya bunların iştirakleri dahil) hiçbir bağlantısı, ortaklığı veya temsil ilişkisi bulunmayan bağımsız bir projedir. Anılan isim ve markalar hak sahiplerine aittir.
+1.3. Hizmet "OLDUĞU GİBİ" ve "MEVCUT OLDUĞU ŞEKLİYLE" sunulur. Yönetim; Hizmetin kesintisiz, hatasız, güvenli veya belirli bir amaca uygun olacağını, verilerin kaybolmayacağını ya da Hizmetin belirli bir süre boyunca yayında kalacağını taahhüt etmez.
+
+2. HİZMETİN DEĞİŞTİRİLMESİ, DURDURULMASI VE KAPATILMASI
+2.1. Yönetim; oyunun içeriğini, kurallarını, eşyalarını, karakter özelliklerini, ekonomiyi, etkinlikleri, oranları ve diğer tüm unsurlarını önceden bildirimde bulunmaksızın, dilediği zaman ve dilediği şekilde değiştirebilir, ekleyebilir veya kaldırabilir.
+2.2. Yönetim; sunucuları bakım, güncelleme, teknik arıza, maliyet, hukuki sebepler veya kendi takdirine bağlı herhangi bir sebeple geçici ya da kalıcı olarak kapatabilir, sıfırlayabilir (wipe), birleştirebilir veya Hizmeti tamamen sona erdirebilir.
+2.3. Hizmetin değiştirilmesi, kesintiye uğraması, sıfırlanması veya kapatılması nedeniyle Kullanıcı; karakter, eşya, oyun parası, ilerleme, sıralama veya başka herhangi bir kayıp için Yönetimden tazminat, iade, telafi veya başka bir talepte bulunamaz.
+
+3. HESAP
+3.1. Hesap kişiseldir. Hesabın satılması, kiralanması, devredilmesi veya paylaşılması yasaktır. Hesap güvenliğinden (şifre, giriş deseni, e-posta) yalnızca Kullanıcı sorumludur.
+3.2. Kullanıcı, kayıt sırasında verdiği bilgilerin doğru olduğunu beyan eder. 18 yaşından küçük kullanıcılar Hizmeti yalnızca veli veya vasilerinin izniyle kullanabilir. Bu izin olmadan yapılan işlemlerin sorumluluğu Kullanıcıya ve veli/vasisine aittir.
+3.3. Üçüncü kişilerin hesaba erişmesi, şifrenin paylaşılması, kandırılma (dolandırıcılık), hesap çalınması veya Kullanıcının kendi hatası sonucu doğan kayıplardan Yönetim sorumlu değildir. Yönetim, kaybolan eşya veya karakterleri geri vermekle yükümlü değildir.
+
+4. SANAL EŞYALAR, OYUN PARASI VE ÖDEMELER
+4.1. Oyundaki tüm karakterler, eşyalar, oyun parası (Noah, Knight Cash, PUS bakiyesi vb.), unvanlar ve diğer sanal unsurlar Yönetime aittir. Kullanıcıya yalnızca Hizmet sürdüğü müddetçe oyun içinde kullanma amaçlı, kişisel, devredilemez ve her an geri alınabilir sınırlı bir kullanım izni verilir. Kullanıcı bunlar üzerinde hiçbir mülkiyet veya alacak hakkına sahip değildir.
+4.2. Sanal unsurların hiçbir parasal değeri yoktur; gerçek paraya, mala veya hizmete çevrilemez, iade edilemez. Oyun dışında gerçek para karşılığı alım-satımı yasaktır ve tespit edilmesi halinde ilgili hesaplar kapatılır.
+4.3. Hizmet içinde bağış, destek veya dijital içerik karşılığı ödeme alınması halinde bu ödemeler; Hizmetin giderlerine gönüllü katkı niteliğindedir ve anında ifa edilen dijital içerik kapsamındadır. Kullanıcı, ödeme yaptığı anda içeriğin hesabına derhal tanımlanmasını onayladığını ve bu nedenle 6502 sayılı Kanun ile Mesafeli Sözleşmeler Yönetmeliği'nin 15. maddesi uyarınca cayma hakkının bulunmadığını kabul eder. Hesabın kurallar ihlali nedeniyle kapatılması, Hizmetin değiştirilmesi, sıfırlanması veya sona ermesi hallerinde yapılmış ödemeler iade edilmez.
+4.4. Ödeme kuruluşları nezdinde haksız ters ibraz (chargeback) veya itiraz yapılması halinde ilgili hesap ve bağlantılı hesaplar süresiz kapatılabilir.
+
+5. DAVRANIŞ KURALLARI VE YAPTIRIMLAR
+5.1. Aşağıdakiler kesinlikle yasaktır: hile, bot, makro, oyun dosyalarını değiştirme, paket düzenleme, hata (bug) istismarı ve bildirmeme, sunucuya saldırı, başkasının hesabına erişme, dolandırıcılık, gerçek para ticareti, hakaret, tehdit, ırkçı/ayrımcı/müstehcen içerik, spam, reklam, Yönetimi veya personeli taklit etme, yanıltıcı şikâyet ve kara propaganda.
+5.2. Yönetim; kurallara aykırı davranış tespit ettiğinde veya şüphelendiğinde, önceden uyarı yapmaksızın ve gerekçe göstermek zorunda olmaksızın; uyarı, susturma, eşya/para silme, karakter sıfırlama, geçici veya süresiz hesap kapatma ve bağlantılı hesapları kapatma yaptırımlarından birini veya birkaçını uygulayabilir. Yaptırımlara ilişkin takdir yetkisi Yönetime aittir.
+5.3. Yaptırım nedeniyle kaybedilen sanal unsurlar veya yapılmış ödemeler için iade ya da tazminat talep edilemez.
+
+6. SORUMLULUĞUN SINIRLANDIRILMASI
+6.1. Yürürlükteki mevzuatın izin verdiği azami ölçüde Yönetim; Hizmetin kullanımı veya kullanılamaması, veri kaybı, kesinti, gecikme, hata, güncelleme, sunucu kapanması, üçüncü kişi eylemleri, virüs, cihaz veya bağlantı sorunları ile doğrudan, dolaylı, arızi, özel veya sonuç olarak ortaya çıkan zarar, kâr kaybı, itibar kaybı ve manevi zarardan sorumlu değildir.
+6.2. Kanunen sorumluluğun kaldırılamadığı haller saklı kalmak kaydıyla, Yönetimin herhangi bir sebeple doğabilecek toplam sorumluluğu, Kullanıcının talebe konu olaydan önceki son 3 ay içinde Hizmete fiilen yaptığı ödemelerin toplamını hiçbir durumda aşamaz. Ödeme yapmamış Kullanıcılar bakımından Yönetimin parasal bir sorumluluğu yoktur.
+6.3. Oyun bağımlılığına karşı makul süre kullanımı Kullanıcının kendi sorumluluğundadır.
+
+7. TAZMİNAT
+Kullanıcı; bu sözleşmeyi veya mevzuatı ihlal etmesi nedeniyle Yönetime veya üçüncü kişilere karşı doğacak her türlü talep, zarar, masraf ve avukatlık ücretini karşılamayı ve Yönetimi bunlardan ari tutmayı kabul eder.
+
+8. KİŞİSEL VERİLER
+8.1. Hizmetin sunulabilmesi için kullanıcı adı, e-posta adresi, şifrenin geri döndürülemez özeti (hash), IP adresi, cihaz bilgisi, oyun içi kayıtlar ve sohbet/işlem kayıtları işlenir. Bu veriler hesabın işletilmesi, güvenlik, hile tespiti, şifre sıfırlama ve yasal yükümlülükler amacıyla 6698 sayılı KVKK kapsamında işlenir ve saklanır.
+8.2. Veriler, yasal zorunluluklar ve barındırma/altyapı hizmetleri dışında üçüncü kişilerle paylaşılmaz. Kullanıcı, KVKK'nın 11. maddesindeki haklarını destek e-postası üzerinden kullanabilir. Hesabın silinmesini talep eden Kullanıcının hesabı ve oyun verileri geri getirilemeyecek şekilde silinir.
+
+9. FİKRİ MÜLKİYET
+Hizmetteki yazılım, tasarım, metin ve özgün içerikler üzerinde Kullanıcıya bu sözleşmede açıkça verilenler dışında hiçbir hak tanınmaz. Oyun istemcisinin kopyalanması, değiştirilmesi, tersine mühendislik yapılması ve izinsiz dağıtılması yasaktır.
+
+10. SÖZLEŞMENİN DEĞİŞTİRİLMESİ VE SONA ERMESİ
+10.1. Yönetim bu sözleşmeyi dilediği zaman güncelleyebilir. Güncel metin sitede yayımlandığı veya oyunda gösterildiği anda yürürlüğe girer. Hizmeti kullanmaya devam etmek güncel metni kabul etmek anlamına gelir; Kullanıcıdan yeniden onay istenebilir.
+10.2. Kullanıcı hesabını dilediği zaman kullanmayı bırakabilir veya silinmesini talep edebilir. Yönetim, Hizmeti sona erdirerek veya hesabı kapatarak sözleşmeyi dilediği zaman sona erdirebilir.
+
+11. UYUŞMAZLIKLAR
+11.1. Kullanıcı, her türlü şikâyet ve talebini öncelikle theknightonline.destek@gmail.com adresine yazılı olarak iletmeyi ve Yönetime en az 30 gün çözüm süresi tanımayı kabul eder.
+11.2. Bu sözleşmeye Türkiye Cumhuriyeti kanunları uygulanır. Kullanıcının tüketici sıfatıyla sahip olduğu ve sözleşmeyle kaldırılamayan kanuni hakları (tüketici hakem heyetine ve tüketici mahkemesine başvuru dahil) saklıdır.
+11.3. Yönetimin sistem kayıtları (sunucu, oyun, sohbet ve işlem kayıtları), 6100 sayılı HMK'nın 193. maddesi uyarınca kesin delil niteliğindedir.
+
+12. ÇEŞİTLİ HÜKÜMLER
+12.1. Bu sözleşmenin herhangi bir hükmünün geçersiz sayılması, diğer hükümlerin geçerliliğini etkilemez; geçersiz hüküm, amacına en yakın geçerli hükümle değiştirilmiş sayılır.
+12.2. Yönetimin bir hakkını kullanmaması, o haktan vazgeçtiği anlamına gelmez.
+12.3. Kullanıcı, bu sözleşmenin elektronik ortamda onaylanmasının yazılı sözleşme hükmünde olduğunu kabul eder.
+
+İletişim: theknightonline.destek@gmail.com

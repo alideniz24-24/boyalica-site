@@ -219,6 +219,22 @@
   $("tab-reg").onclick = function () { openModal(true); };
   $("hero-reg").onclick = function () { openModal(true); };
   $("modal-x").onclick = function () { modal.hidden = true; };
+  // Kullanıcı Sözleşmesi (kayıtta onay zorunlu; metin sozlesme.txt, oyundaki metinle aynı)
+  var termsLoaded = false;
+  function openTerms(e) {
+    if (e) e.preventDefault();
+    $("terms-modal").hidden = false;
+    if (termsLoaded) return;
+    fetch("sozlesme.txt?v=1").then(function (r) { return r.text(); }).then(function (t) {
+      termsLoaded = true;
+      $("terms-text").textContent = t;
+    }).catch(function () { $("terms-text").textContent = "Sözleşme yüklenemedi, sayfayı yenile."; });
+  }
+  $("r-terms").onclick = openTerms;
+  $("terms-x").onclick = function () { $("terms-modal").hidden = true; };
+  $("terms-ok").onclick = function () { $("r-rules").checked = true; $("terms-modal").hidden = true; };
+  $("terms-modal").onclick = function (e) { if (e.target === $("terms-modal")) $("terms-modal").hidden = true; };
+  if (location.hash === "#sozlesme") openTerms();
   modal.onclick = function (e) { if (e.target === modal) modal.hidden = true; };
 
   function loggedIn(r) {
@@ -245,8 +261,9 @@
     if (!/^[a-z0-9_]{3,16}$/.test(user)) { m.textContent = "Kullanıcı adı 3-16 karakter olmalı (a-z, 0-9, _)."; return; }
     if ($("r-pass").value !== $("r-pass2").value) { m.textContent = "Şifreler aynı değil."; return; }
     var btn = this.querySelector("button");
+    if (!$("r-rules").checked) { m.textContent = "Kayıt için Kullanıcı Sözleşmesi'ni kabul etmelisin."; return; }
     btn.disabled = true;
-    api("/api/register", { user: user, pass: $("r-pass").value, email: $("r-email").value.trim() }, function (r) {
+    api("/api/register", { user: user, pass: $("r-pass").value, email: $("r-email").value.trim(), terms: 1 }, function (r) {
       btn.disabled = false;
       if (r.ok) loggedIn(r); else m.textContent = r.error || "Kayıt olunamadı.";
     });

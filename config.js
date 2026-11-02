@@ -15,6 +15,17 @@ window.BOYALICA = {
   discordUrl: "",    // Discord davet bağlantısı
   instagramUrl: "https://www.instagram.com/theknightonline.com.tr/",   // Instagram hesabı
 
+  // E-pin paketleri (oyundaki kod değerleri). price: satıcıdaki TL fiyatı, boşsa yazılmaz
+  epinPackages: [
+    { kc: 500, price: "" },
+    { kc: 1000, price: "" },
+    { kc: 2500, price: "" },
+    { kc: 5000, price: "" },
+    { kc: 10000, price: "" }
+  ],
+  // E-pin satan siteler: { name: "Klasgame", url: "https://..." }. Boşsa "E-pin satışı yakında" yazar
+  epinSellers: [],
+
   // Haberler ve duyurular news.json dosyasında (oyundaki launcher da oradan okur)
 
   // Galeri: images klasöründeki görüntüler

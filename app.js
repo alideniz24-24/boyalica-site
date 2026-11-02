@@ -289,16 +289,42 @@
   var PANES = {
     bilgi: ["Hesap Bilgilerim", "Hesap ve kullanıcı bilgilerini görüntüle"],
     karakter: ["Karakterlerim", "Hesabındaki karakterler ve bilgileri"],
-    sifre: ["Şifre Değiştir", "Oyun ve site şifreni güncelle"]
+    sifre: ["Şifre Değiştir", "Oyun ve site şifreni güncelle"],
+    epin: ["Knight Cash / E-pin", "E-pin kodunu kullan, Knight Cash bakiyeni gör"]
   };
   function showPane(hash) {
-    var key = hash === "#profil/karakterler" ? "karakter" : hash === "#profil/sifre" ? "sifre" : "bilgi";
+    var key = hash === "#profil/karakterler" ? "karakter" : hash === "#profil/sifre" ? "sifre" : hash === "#profil/epin" ? "epin" : "bilgi";
     document.querySelectorAll(".pane").forEach(function (p) { p.hidden = p.getAttribute("data-pane") !== key; });
     document.querySelectorAll(".panel-nav a[data-pane]").forEach(function (a) { a.classList.toggle("on", a.getAttribute("data-pane") === key); });
     $("pane-title").textContent = PANES[key][0];
     $("pane-sub").textContent = PANES[key][1];
   }
   $("nav-out").onclick = logout;
+  // E-pin (sunucu POST /api/epin): paketler ve satıcılar config.js'te
+  $("kc-packs").innerHTML = (C.epinPackages || []).map(function (p) {
+    return "<div class='kc-pack'><b>" + fmt(p.kc) + "</b><small>Knight Cash</small>" + (p.price ? "<span>" + esc(p.price) + "</span>" : "") + "</div>";
+  }).join("");
+  var sellers = (C.epinSellers || []).filter(function (s) { return s.url; });
+  $("kc-sellers").innerHTML = sellers.length
+    ? "E-pin satın al: " + sellers.map(function (s) { return "<a href='" + esc(s.url) + "' target='_blank' rel='noopener'>" + esc(s.name) + "</a>"; }).join(" · ")
+    : "E-pin satışı yakında başlayacak.";
+  $("ep-form").onsubmit = function (e) {
+    e.preventDefault();
+    var m = $("ep-msg"), btn = this.querySelector("button");
+    var code = $("ep-code").value.trim().toUpperCase();
+    m.className = "msg";
+    if (code.replace(/[^A-Z0-9]/g, "").length !== 16) { m.textContent = "Kod biçimi hatalı. Örnek: ANTG-XXXX-XXXX-XXXX"; return; }
+    btn.disabled = true;
+    api("/api/epin", { code: code }, function (r) {
+      btn.disabled = false;
+      if (r.ok) {
+        m.className = "msg ok";
+        m.textContent = "+" + fmt(r.value) + " Knight Cash yüklendi. Yeni bakiye: " + fmt(r.cash) + " KC";
+        $("kc-bal").textContent = fmt(r.cash);
+        $("ep-code").value = "";
+      } else m.textContent = r.error || "Kod kullanılamadı.";
+    });
+  };
   function loadProfile() {
     api("/api/me", null, function (d) {
       if (!d.ok) {
@@ -325,6 +351,7 @@
       $("s-chars").textContent = d.charCount;
       $("s-np").textContent = fmt(d.totalNp);
       $("s-lvl").textContent = d.maxLevel;
+      $("kc-bal").textContent = d.cash === undefined ? "-" : fmt(d.cash);
       var jobs = { Warrior: "Warrior", Rogue: "Rogue", Mage: "Mage", Priest: "Priest" };
       $("p-chars").innerHTML = (d.characters || []).length ? d.characters.map(function (c) {
         var karus = c.nation === "KARUS";

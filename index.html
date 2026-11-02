@@ -56,6 +56,7 @@
       <a href="#profil" data-pane="bilgi"><span class="pi">👤</span>Hesap Bilgilerim</a>
       <a href="#profil/karakterler" data-pane="karakter"><span class="pi">⚔</span>Karakterlerim</a>
       <a href="#profil/sifre" data-pane="sifre"><span class="pi">🔒</span>Şifre Değiştir</a>
+      <a href="#profil/epin" data-pane="epin"><span class="pi">💎</span>Knight Cash / E-pin</a>
       <a id="nav-out" class="out"><span class="pi">⏻</span>Çıkış Yap</a>
     </aside>
     <div class="panel-main">
@@ -96,6 +97,28 @@
 
       <div class="pane" data-pane="karakter" hidden>
         <div class="char-grid" id="p-chars"></div>
+      </div>
+
+      <div class="pane" data-pane="epin" hidden>
+        <div class="card prof-sec">
+          <h3>Knight Cash Bakiyen</h3>
+          <p class="kc-bal"><b id="kc-bal">-</b> KC</p>
+          <p class="note">Knight Cash oyundaki Power Up Store'da (PUS) harcanır. Bakiye hesabındaki bütün karakterlerde ortaktır.</p>
+        </div>
+        <div class="card prof-sec">
+          <h3>E-pin Kullan</h3>
+          <p class="note">Satın aldığın kodu gir; Knight Cash hemen hesabına yüklenir. Oyundaysan bakiye oyunda da güncellenir. Kodu oyunda PUS &gt; Enter E-Pin ile de kullanabilirsin.</p>
+          <form id="ep-form" class="form">
+            <input type="text" id="ep-code" placeholder="ANTG-XXXX-XXXX-XXXX" autocomplete="off" maxlength="24" required style="text-transform:uppercase">
+            <button class="btn-gold" type="submit">Kodu Kullan</button>
+            <p class="msg" id="ep-msg"></p>
+          </form>
+        </div>
+        <div class="card prof-sec">
+          <h3>E-pin Paketleri</h3>
+          <div class="kc-packs" id="kc-packs"></div>
+          <p class="note" id="kc-sellers"></p>
+        </div>
       </div>
 
       <div class="pane" data-pane="sifre" hidden>

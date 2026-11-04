@@ -263,7 +263,7 @@
     var btn = this.querySelector("button");
     if (!$("r-rules").checked) { m.textContent = "Kayıt için Kullanıcı Sözleşmesi'ni kabul etmelisin."; return; }
     btn.disabled = true;
-    api("/api/register", { user: user, pass: $("r-pass").value, email: $("r-email").value.trim(), terms: 1 }, function (r) {
+    api("/api/register", { user: user, pass: $("r-pass").value, email: $("r-email").value.trim(), refcode: $("r-ref").value.trim(), terms: 1 }, function (r) {
       btn.disabled = false;
       if (r.ok) loggedIn(r); else m.textContent = r.error || "Kayıt olunamadı.";
     });

@@ -13,7 +13,7 @@ window.BOYALICA = {
   androidUrl: "https://github.com/alideniz24-24/boyalica-site/releases/latest/download/KOMobile.apk",   // her zaman en son APK (android-vN release)
   whatsappUrl: "https://chat.whatsapp.com/IKwWSXgbahk7n5P8RgEK0t",   // WhatsApp topluluğu
   discordUrl: "",    // Discord davet bağlantısı
-  instagramUrl: "https://www.instagram.com/theknightonline.com.tr/",   // Instagram hesabı
+  instagramUrl: "https://www.instagram.com/koantigonmobile/",   // Instagram hesabı
 
   // E-pin paketleri (oyundaki kod değerleri). price: satıcıdaki TL fiyatı, boşsa yazılmaz
   epinPackages: [

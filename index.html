@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=20261117">
 </head>
 <body>
 
@@ -298,7 +298,8 @@
     </form>
     <form id="reg-form" class="form" hidden>
       <input id="r-user" placeholder="Kullanıcı adı (3-16, a-z 0-9 _)" autocomplete="username" maxlength="16" required>
-      <input id="r-email" type="email" placeholder="E-posta (şifreni unutursan buraya bağlantı gelir)" autocomplete="email" maxlength="80" required>
+      <input id="r-email" type="email" placeholder="E-posta (doğrulama kodu buraya gelir)" autocomplete="email" maxlength="80" required>
+      <div class="code-row"><input id="r-code" placeholder="E-posta doğrulama kodu (6 hane)" inputmode="numeric" autocomplete="one-time-code" maxlength="6"><button class="btn-line" type="button" id="r-sendcode">Kod Gönder</button></div>
       <input id="r-pass" type="password" placeholder="Şifre (en az 4)" autocomplete="new-password" minlength="4" required>
       <input id="r-pass2" type="password" placeholder="Şifre (tekrar)" autocomplete="new-password" minlength="4" required>
       <input id="r-ref" placeholder="Referans kodu (isteğe bağlı, ikinize de 500 KC)" autocomplete="off" maxlength="6">
@@ -319,6 +320,6 @@
 </div>
 
 <script src="config.js?v=20261106"></script>
-<script src="app.js"></script>
+<script src="app.js?v=20261117"></script>
 </body>
 </html>

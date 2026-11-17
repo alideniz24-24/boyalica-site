@@ -375,3 +375,7 @@ td.nm span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min
 .kc-pack small { display: block; font-size: 12px; opacity: .75; }
 .kc-pack span { display: block; margin-top: 6px; font-weight: 600; }
 #kc-sellers a { color: var(--gold); }
+
+.code-row{display:flex;gap:8px}
+.code-row input{flex:1;min-width:0}
+.code-row button{white-space:nowrap;padding:0 14px}

@@ -254,6 +254,21 @@
       if (r.ok) loggedIn(r); else $("l-msg").textContent = r.error || "Giriş yapılamadı.";
     });
   };
+  // e-posta doğrulama kodu (2026-11-17): kayıttan önce e-postaya 6 haneli kod
+  $("r-sendcode").onclick = function () {
+    var m = $("r-msg"), b = this;
+    var user = $("r-user").value.trim().toLowerCase();
+    if (!/^[a-z0-9_]{3,16}$/.test(user)) { m.textContent = "Önce kullanıcı adını yaz (3-16 karakter, a-z 0-9 _)."; return; }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($("r-email").value.trim())) { m.textContent = "Önce geçerli bir e-posta adresi yaz."; return; }
+    b.disabled = true;
+    api("/api/regcode", { user: user, email: $("r-email").value.trim() }, function (r) {
+      m.textContent = r.ok ? (r.info || "Kod gönderildi.") : (r.error || "Kod gönderilemedi.");
+      if (!r.ok) { b.disabled = false; return; }
+      var s = 60;
+      var iv = setInterval(function () { s--; b.textContent = s > 0 ? "Tekrar (" + s + ")" : "Kod Gönder"; if (s <= 0) { clearInterval(iv); b.disabled = false; } }, 1000);
+      $("r-code").focus();
+    });
+  };
   $("reg-form").onsubmit = function (e) {
     e.preventDefault();
     var m = $("r-msg");
@@ -263,7 +278,7 @@
     var btn = this.querySelector("button");
     if (!$("r-rules").checked) { m.textContent = "Kayıt için Kullanıcı Sözleşmesi'ni kabul etmelisin."; return; }
     btn.disabled = true;
-    api("/api/register", { user: user, pass: $("r-pass").value, email: $("r-email").value.trim(), refcode: $("r-ref").value.trim(), terms: 1 }, function (r) {
+    api("/api/register", { user: user, pass: $("r-pass").value, email: $("r-email").value.trim(), code: $("r-code").value.trim(), refcode: $("r-ref").value.trim(), terms: 1 }, function (r) {
       btn.disabled = false;
       if (r.ok) loggedIn(r); else m.textContent = r.error || "Kayıt olunamadı.";
     });

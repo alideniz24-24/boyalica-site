@@ -379,3 +379,47 @@ td.nm span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min
 .code-row{display:flex;gap:8px}
 .code-row input{flex:1;min-width:0}
 .code-row button{white-space:nowrap;padding:0 14px}
+
+/* ---- klan üyeleri + oyuncu profili (oyundaki KO Gör penceresi; kullanıcı 2026-11-17) ---- */
+.lnk { cursor: pointer; }
+.lnk:hover { color: #ffd24a; text-decoration: underline; }
+.ko-modal .ko-box { position: relative; width: min(600px, calc(100vw - 24px)); max-width: 600px; box-sizing: border-box; max-height: 94vh; overflow: auto; }
+.ko-modal.clan .ko-box { width: min(660px, calc(100vw - 24px)); max-width: 660px; }
+.ko-modal .ko-box .modal-x { position: absolute; z-index: 5; right: 6px; top: 4px; color: #fff; text-shadow: 0 0 4px #000; }
+.ko-wait { color: #cfd6c4; text-align: center; padding: 40px 10px; background: #1c2219; border: 1px solid #5d6648; border-radius: 6px; margin: 0; }
+.ko-inv { position: relative; width: 100%; aspect-ratio: 591 / 612; user-select: none; container-type: inline-size; }
+.ko-inv .ko-bg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ko-cell { position: absolute; width: 7.28%; aspect-ratio: 1; cursor: pointer; }
+.ko-cell img { width: 100%; height: 100%; display: block; }
+.ko-cell i { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; text-align: center; font: 600 1.45cqw/1.05 "Segoe UI", sans-serif; font-style: normal; color: #e8e0c8; background: #2a2a1c; overflow: hidden; word-break: break-word; }
+.ko-cell.g2 i { color: #8fb8ff; } .ko-cell.g3 i { color: #ffd24a; } .ko-cell.g4 i { color: #ff9a4d; }
+.ko-cell .pl { position: absolute; right: 1px; top: 0; font: 700 1.9cqw/1 "Segoe UI", sans-serif; color: #ffe27a; text-shadow: 0 0 3px #000, 1px 1px 0 #000; }
+.ko-cell .ct { position: absolute; right: 2px; bottom: 0; font: 700 1.8cqw/1 "Segoe UI", sans-serif; color: #fff; text-shadow: 1px 1px 0 #000, 0 0 3px #000; }
+.ko-cell:hover { outline: 2px solid #e8d27a; outline-offset: -1px; }
+.ko-title { position: absolute; display: flex; align-items: center; justify-content: center; font: 700 2.5cqw "Segoe UI", sans-serif; color: #f3e3b0; text-shadow: 0 1px 2px #000; white-space: nowrap; overflow: hidden; }
+.ko-info { position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .8cqw; text-align: center; background: rgba(0,0,0,.5); font: 2.2cqw/1.25 "Segoe UI", sans-serif; color: #e9e4d2; padding: 1cqw; overflow: hidden; box-sizing: border-box; }
+.ko-info .nmx { font-size: 3cqw; color: #ffd24a; word-break: break-all; }
+.ko-info .lv { font-size: 2.8cqw; font-weight: 700; }
+.ko-info em { color: #ff9a4d; font-style: normal; }
+.ko-info .on { color: #8fe36d; } .ko-info .off { color: #9a9a8a; }
+.ko-info .cl { color: #b9d4ff; }
+.ko-tip { position: fixed; z-index: 300; max-width: 220px; padding: 6px 9px; background: rgba(8,10,6,.95); border: 1px solid #7c7a52; border-radius: 3px; font: 13px/1.35 "Segoe UI", sans-serif; color: #fff; pointer-events: none; }
+.ko-tip.g2 b { color: #8fb8ff; } .ko-tip.g3 b { color: #ffd24a; } .ko-tip.g4 b { color: #ff9a4d; }
+.ko-clan { background: linear-gradient(#2a3124, #1b2018); border: 2px solid #6d7550; border-radius: 6px; box-shadow: inset 0 0 0 1px #0d100b, 0 6px 24px #000a; padding: 14px; color: #e6e2cf; }
+.ko-clan-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 4px 34px 12px 2px; border-bottom: 1px solid #56603f; margin-bottom: 10px; font-size: 13px; }
+.ko-clan-head > b { font-size: 20px; color: #ffd24a; }
+.ko-clan-head .prem { color: #ffd24a; border: 1px solid #a88a32; border-radius: 3px; padding: 1px 6px; }
+.ko-clan-list { max-height: 62vh; overflow: auto; }
+.ko-clan-list table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.ko-clan-list th { position: sticky; top: 0; background: #2f3829; color: #d8c88a; text-align: left; padding: 6px 8px; font-weight: 600; }
+.ko-clan-list td { padding: 6px 8px; border-top: 1px solid #333c2b; }
+.ko-clan-list tr:hover td { background: #ffffff08; }
+.ko-clan-list .nm div { display: flex; align-items: center; gap: 6px; }
+.ko-clan-list .rLider { color: #ffd24a; } .ko-clan-list .rYardımcı { color: #b9d4ff; }
+.ko-clan-list .empty { text-align: center; color: #9a9a8a; }
+.ondot { width: 8px; height: 8px; border-radius: 50%; background: #6fd34a; display: inline-block; flex: none; }
+@media (max-width: 520px) { .ko-clan-list table { font-size: 12px; } .ko-clan-list td, .ko-clan-list th { padding: 5px 4px; } }
+/* profil: KO çerçevesinin kendi turuncu X'i kapatır */
+.ko-modal.profile .ko-box > .modal-x { display: none; }
+.ko-close { position: absolute; left: 92%; top: 7.3%; width: 4.6%; aspect-ratio: 1; padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: pointer; }
+.ko-close:hover { box-shadow: 0 0 8px 2px #ffb04acc; }

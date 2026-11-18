@@ -60,7 +60,8 @@
       return t ? "<img class='npsym' src='images/rank/" + (kind === "monthly" ? "aylik_" : "ulusal_") + t + ".png' alt=''>" : "";
     });
   }
-  function nameCell(name, sym) { return "<td class='nm'><div>" + (sym || "") + "<span>" + esc(name) + "</span></div></td>"; }
+  // isim tıklanır (kullanıcı 2026-11-17): oyuncu -> profil (oyundaki Gör), klan -> üyeler
+  function nameCell(name, sym, clan) { return "<td class='nm'><div>" + (sym || "") + "<span class='lnk' " + (clan ? "data-c" : "data-p") + "='" + esc(name) + "'>" + esc(name) + "</span></div></td>"; }
   function emptyRows(msg) { return "<tr><td colspan='5' class='empty'>" + esc(msg) + "</td></tr>"; }
   function load() {
     if (!C.apiBase) { setOffline("Sunucu adresi ayarlanmadı."); return; }
@@ -82,7 +83,7 @@
         return "<tr>" + rk(i) + nameCell(x.name, symbols(a, "monthly")[i]) + "<td>" + race(x.nation) + "</td><td>" + x.level + "</td><td>" + fmt(x.monthly) + "</td></tr>";
       }).join("") : emptyRows("Bu ay henüz NP kazanan yok.");
       $("rank-clans").innerHTML = c.length ? c.map(function (x, i) {
-        return "<tr>" + rk(i) + nameCell(x.name) + "<td>" + race(x.nation) + "</td><td>" + x.members + "</td><td>" + fmt(x.np) + "</td></tr>";
+        return "<tr>" + rk(i) + nameCell(x.name, "", true) + "<td>" + race(x.nation) + "</td><td>" + x.members + "</td><td>" + fmt(x.np) + "</td></tr>";
       }).join("") : emptyRows("Henüz klan yok.");
     }).catch(function () { setOffline("Sunucuya şu an ulaşılamıyor."); });
   }
@@ -111,7 +112,7 @@
       if (allRace && x.nation !== allRace) return;
       if (q && String(x.name).toLocaleLowerCase("tr-TR").indexOf(q) < 0) return;
       var last = allTab === "clans" ? [x.members, fmt(x.np)] : [x.level, fmt(allTab === "monthly" ? x.monthly : x.np)];
-      rows.push("<tr>" + rk(i) + nameCell(x.name, sy[i]) + "<td>" + race(x.nation) + "</td><td>" + last[0] + "</td><td>" + last[1] + "</td></tr>");
+      rows.push("<tr>" + rk(i) + nameCell(x.name, sy[i], allTab === "clans") + "<td>" + race(x.nation) + "</td><td>" + last[0] + "</td><td>" + last[1] + "</td></tr>");
     });
     $("all-body").innerHTML = rows.length ? rows.join("") : emptyRows(list.length ? "Aramaya uyan kayıt yok." : "Henüz kayıt yok.");
     $("all-count").textContent = rows.length + " / " + list.length + " kayıt · Son güncelleme: " + (allData.updated || "-");
@@ -405,4 +406,94 @@
   window.addEventListener("hashchange", route);
   renderAuth();
   route();
+  // ---------- klan üyeleri + oyuncu profili (kullanıcı 2026-11-17; sunucu /api/clan, /api/profile) ----------
+  // profil = oyundaki Gör penceresi: KO re_inventory görseli + OfflineInspect yuva konumları (görsel x-10, y-2 kırpıldı)
+  var INV_EQ = { earring1: [425, 100], helmet: [477, 100], earring2: [529, 100], necklace: [425, 152], upper: [477, 152], draki: [529, 152],
+    weapon: [425, 204], belt: [477, 204], shield: [529, 204], ring1: [425, 255], lower: [477, 255], ring2: [529, 255], hands: [425, 308], feet: [477, 308],
+    wings: [33, 82], cospreHelmet: [91, 82], fairy: [151, 82], gloves: [33, 141], cospre: [91, 141], glovesR: [151, 141], emblem: [33, 200], tattoo: [151, 200], talisman: [91, 200] };
+  var INV_BX = [236, 285, 334, 383, 432, 481, 530], INV_BY = [373, 422, 471, 520], INV_MX = [40, 91, 142], INV_MY = [352, 403, 454, 505];
+  var INV_W = 591, INV_H = 612;
+  function pctX(x) { return ((x - 10) / INV_W * 100) + "%"; }
+  function pctY(y) { return ((y - 2) / INV_H * 100) + "%"; }
+  function iconUrl(id) { return "icons/" + String(id).replace(/[^A-Za-z0-9]/g, "_") + ".png"; }
+  function plusTxt(p) { return p >= 100 ? "R" + (p - 100) : "+" + p; }
+  function invCell(it, x, y) {
+    var tip = "<b>" + esc(it.name) + (it.plus ? " " + plusTxt(it.plus) : "") + "</b>" + (it.count > 1 ? "<br>Adet: " + fmt(it.count) : "");
+    var abbr = esc(String(it.name || "?").slice(0, 12));
+    return "<div class='ko-cell g" + (it.grade || 1) + "' style='left:" + pctX(x) + ";top:" + pctY(y) + "' data-tip='" + esc(tip) + "'>"
+      + "<img src='" + iconUrl(it.id) + "' alt='' loading='lazy' onerror='this.style.display=\"none\";this.nextSibling.style.display=\"flex\"'><i>" + abbr + "</i>"
+      + (it.plus ? "<b class='pl'>" + plusTxt(it.plus) + "</b>" : "")
+      + (it.count > 1 ? "<b class='ct'>" + (it.count > 9999 ? Math.floor(it.count / 1000) + "k" : it.count) + "</b>" : "") + "</div>";
+  }
+  function profileHtml(d) {
+    var cells = [];
+    Object.keys(d.equip || {}).forEach(function (k) { var p = INV_EQ[k]; if (p) cells.push(invCell(d.equip[k], p[0], p[1])); });
+    // çanta: kayıttaki yuva (oyundaki gibi); yuvası olmayan ilk boşa. 28 çanta + büyülü çanta hücreleri (12)
+    var limit = 28 + (d.magicBags > 0 ? 12 : 0), placed = [], later = [];
+    (d.bag || []).forEach(function (it) { if (it.slot >= 0 && it.slot < limit && !placed[it.slot]) placed[it.slot] = it; else later.push(it); });
+    later.forEach(function (it) { for (var k = 0; k < limit; k++) if (!placed[k]) { placed[k] = it; return; } });
+    for (var k = 0; k < limit; k++) {
+      if (!placed[k]) continue;
+      if (k < 28) cells.push(invCell(placed[k], INV_BX[k % 7], INV_BY[Math.floor(k / 7)]));
+      else { var m = k - 28; cells.push(invCell(placed[k], INV_MX[m % 3], INV_MY[Math.floor(m / 3)])); }
+    }
+    var info = "<div class='ko-info' style='left:" + pctX(240) + ";top:" + pctY(100) + ";width:" + (174 / INV_W * 100) + "%;height:" + (250 / INV_H * 100) + "%'>"
+      + "<b class='nmx'>" + esc(d.name) + "</b>" + (d.online ? "<span class='on'>● Oyunda</span>" : "<span class='off'>Çevrimdışı</span>")
+      + "<span class='lv'>Lv. " + d.level + (d.reb > 0 ? " <em>Reb " + d.reb + "</em>" : "") + "</span><span>" + esc(d.job) + "</span>" + race(d.nation)
+      + (d.clan ? "<span class='lnk cl' data-c='" + esc(d.clan) + "'>[" + esc(d.clan) + "]</span>" : "")
+      + "<span>NP " + fmt(d.np) + "</span>" + (d.monthly > 0 ? "<span>Aylık NP " + fmt(d.monthly) + "</span>" : "") + "</div>";
+    var title = "<div class='ko-title' style='left:" + pctX(300) + ";top:" + pctY(44) + ";width:" + (212 / INV_W * 100) + "%;height:" + (30 / INV_H * 100) + "%'>" + esc(d.name) + "</div>";
+    return "<div class='ko-inv'><img class='ko-bg' src='images/ko_inventory.webp' alt=''><button class='ko-close' aria-label='Kapat' onclick='document.getElementById(\"ko-x\").click()'></button>" + title + info + cells.join("") + "</div>";
+  }
+  function clanHtml(d) {
+    var rows = (d.members || []).map(function (m, i) {
+      return "<tr><td class='rk'>" + (i + 1) + "</td><td class='nm'><div>" + (m.online ? "<span class='ondot' title='Oyunda'></span>" : "") + "<span class='lnk' data-p='" + esc(m.name) + "'>" + esc(m.name) + "</span></div></td>"
+        + "<td class='rank r" + esc(m.rank) + "'>" + esc(m.rank) + "</td><td>" + esc(m.job) + "</td><td>" + m.level + "</td><td>" + fmt(m.np) + "</td></tr>";
+    }).join("");
+    return "<div class='ko-clan'><div class='ko-clan-head'><b>" + esc(d.name) + "</b>" + race(d.nation) + "<span>Grade " + d.grade + "</span>"
+      + "<span>Lider: <span class='lnk' data-p='" + esc(d.chief) + "'>" + esc(d.chief) + "</span></span>"
+      + (d.premium ? "<span class='prem'>Clan Premium</span>" : "") + "<span>" + (d.members || []).length + " üye · " + fmt(d.np) + " NP</span></div>"
+      + "<div class='ko-clan-list'><table><thead><tr><th>#</th><th>Oyuncu</th><th>Rütbe</th><th>Meslek</th><th>Lv</th><th>NP</th></tr></thead><tbody>"
+      + (rows || "<tr><td colspan='6' class='empty'>Üye yok.</td></tr>") + "</tbody></table></div></div>";
+  }
+  function openKo(kind, name) {
+    var modal = $("ko-modal"), box = $("ko-body");
+    hideTip();
+    modal.className = "modal ko-modal " + kind;
+    modal.hidden = false;
+    box.innerHTML = "<p class='ko-wait'>Yükleniyor...</p>";
+    if (!C.apiBase) { box.innerHTML = "<p class='ko-wait'>Sunucu adresi ayarlanmadı.</p>"; return; }
+    fetch(C.apiBase + "/api/" + kind + "?name=" + encodeURIComponent(name), { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (d) {
+      if (!d || !d.ok) { box.innerHTML = "<p class='ko-wait'>" + esc((d && d.error) || "Bulunamadı.") + "</p>"; return; }
+      box.innerHTML = kind === "profile" ? profileHtml(d) : clanHtml(d);
+    }).catch(function () { box.innerHTML = "<p class='ko-wait'>Sunucuya şu an ulaşılamıyor.</p>"; });
+  }
+  function hideTip() { var t = $("ko-tip"); if (t) t.hidden = true; }
+  function showTip(cell) {
+    var t = $("ko-tip"), r = cell.getBoundingClientRect();
+    t.innerHTML = cell.getAttribute("data-tip");
+    t.className = "ko-tip " + cell.className.replace("ko-cell", "").trim();
+    t.hidden = false;
+    t.style.left = Math.max(8, Math.min(window.innerWidth - t.offsetWidth - 8, r.left)) + "px";
+    t.style.top = (r.bottom + 6 + t.offsetHeight > window.innerHeight ? r.top - t.offsetHeight - 6 : r.bottom + 6) + "px";
+  }
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest ? e.target.closest("[data-p],[data-c]") : null;
+    if (t) {
+      e.preventDefault();
+      var isClan = t.hasAttribute("data-c");
+      openKo(isClan ? "clan" : "profile", t.getAttribute(isClan ? "data-c" : "data-p"));
+      return;
+    }
+    var cell = e.target.closest ? e.target.closest(".ko-cell") : null;
+    if (cell) showTip(cell); else hideTip();
+  });
+  document.addEventListener("mouseover", function (e) {
+    var cell = e.target.closest ? e.target.closest(".ko-cell") : null;
+    if (cell) showTip(cell);
+  });
+  document.addEventListener("mouseout", function (e) { if (e.target.closest && e.target.closest(".ko-cell")) hideTip(); });
+  $("ko-x").onclick = function () { $("ko-modal").hidden = true; hideTip(); };
+  $("ko-modal").onclick = function (e) { if (e.target === $("ko-modal")) { $("ko-modal").hidden = true; hideTip(); } };
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") { $("ko-modal").hidden = true; hideTip(); } });
 })();

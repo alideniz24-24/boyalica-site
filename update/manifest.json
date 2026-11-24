@@ -1,9 +1,9 @@
 {
-  "appVersion": 11,
+  "appVersion": 12,
   "minAppVersion": 10,
   "iosUrl": "https://testflight.apple.com/join/Srn1BPmR",
   "androidUrl": "https://cdn.theknightonline.com.tr/apk/KOMobile.apk",
-  "notes": "Yeni sürüm 11: parti sesli sohbet için mikrofon izni (bas-konuş), açılış ekranında ANTIGON logosu. Eski sürüm de çalışmaya devam eder.",
+  "notes": "Yeni sürüm 12: etkinlik bildirimleri (BDW, FT, JR, Bifrost, Death Race ve düello başlamadan 10 dk önce telefonuna bildirim). Eski sürüm de çalışmaya devam eder.",
   "contentVersion": 0,
   "files": [],
   "contentBase": "https://cdn.theknightonline.com.tr/content-",

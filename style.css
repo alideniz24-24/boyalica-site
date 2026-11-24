@@ -423,3 +423,14 @@ td.nm span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min
 .ko-modal.profile .ko-box > .modal-x { display: none; }
 .ko-close { position: absolute; left: 92%; top: 7.3%; width: 4.6%; aspect-ratio: 1; padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: pointer; }
 .ko-close:hover { box-shadow: 0 0 8px 2px #ffb04acc; }
+/* oyuncu profili: envanter + karakter penceresi yan yana (dar ekranda alt alta) — 2026-11-24 */
+.ko-modal.profile .ko-box { width: min(1000px, calc(100vw - 24px)); max-width: 1000px; }
+.ko-pro { display: flex; gap: 10px; align-items: flex-start; }
+.ko-pro .ko-inv { flex: 591 1 0; min-width: 0; }
+.ko-char { position: relative; flex: 380 1 0; min-width: 0; aspect-ratio: 616 / 954; user-select: none; container-type: inline-size; }
+.ko-char .ko-bg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ko-cv { position: absolute; display: flex; align-items: center; justify-content: center; white-space: nowrap; overflow: hidden; font: 600 3.9cqw/1 "Segoe UI", sans-serif; color: #f1ecd8; text-shadow: 0 1px 2px #000; }
+.ko-cv.l { justify-content: flex-start; padding-left: 1cqw; }
+.ko-cv.id { color: #ffd24a; font-weight: 700; }
+.ko-cnote { position: absolute; left: 6%; right: 6%; bottom: 1.5%; text-align: center; font: 3.2cqw/1.2 "Segoe UI", sans-serif; color: #c9c3a8; }
+@media (max-width: 700px) { .ko-pro { flex-direction: column; } .ko-pro .ko-inv, .ko-char { width: 100%; flex: none; } }

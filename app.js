@@ -443,7 +443,26 @@
       + (d.clan ? "<span class='lnk cl' data-c='" + esc(d.clan) + "'>[" + esc(d.clan) + "]</span>" : "")
       + "<span>NP " + fmt(d.np) + "</span>" + (d.monthly > 0 ? "<span>Aylık NP " + fmt(d.monthly) + "</span>" : "") + "</div>";
     var title = "<div class='ko-title' style='left:" + pctX(300) + ";top:" + pctY(44) + ";width:" + (212 / INV_W * 100) + "%;height:" + (30 / INV_H * 100) + "%'>" + esc(d.name) + "</div>";
-    return "<div class='ko-inv'><img class='ko-bg' src='images/ko_inventory.webp' alt=''><button class='ko-close' aria-label='Kapat' onclick='document.getElementById(\"ko-x\").click()'></button>" + title + info + cells.join("") + "</div>";
+    return "<div class='ko-pro'><div class='ko-inv'><img class='ko-bg' src='images/ko_inventory.webp' alt=''><button class='ko-close' aria-label='Kapat' onclick='document.getElementById(\"ko-x\").click()'></button>" + title + info + cells.join("") + "</div>" + charHtml(d) + "</div>";
+  }
+  // karakter penceresi (kullanıcı 2026-11-24): oyundaki Gör'ün karakter sayfası; images/ko_character.webp + değer alanları (yüzde, Unity'den ölçüldü)
+  // d.panel = OfflineOriginalUI.KoCharInfo: 0 meslek, 1 seviye, 2 ulus, 3 NP, 4 saldırı, 5 savunma, 6 ağırlık, 7-11 STR/HP/DEX/INT/MP, 12-17 dirençler, 18 EXP
+  var CH_F = { Id: [9.97, 3.14, 56.56, 3.33], Class: [9.97, 6.65, 56.56, 3.31], Level: [24.77, 14.38, 25.42, 3.31], Nation: [63.47, 14.38, 25.42, 3.31],
+    Exp: [25.39, 19.85, 62.89, 3.33], RealmPoint: [25.39, 25.6, 62.89, 3.31], AP: [25.1, 39.31, 23.86, 3.33], GP: [25.1, 45.3, 23.86, 3.31], Manner: [25.1, 51.28, 23.86, 3.33],
+    Strength: [61.36, 39.31, 23.9, 3.33], Stamina: [61.36, 45.3, 23.9, 3.31], Dexterity: [61.36, 51.28, 23.9, 3.33], Intelligence: [61.36, 63.25, 23.9, 3.33], MagicAttack: [61.36, 57.27, 23.9, 3.31],
+    RegistFire: [26.3, 77.71, 23.9, 3.31], RegistIce: [26.3, 83.96, 23.9, 3.31], RegistLightR: [26.3, 89.69, 23.9, 3.31],
+    RegistMagic: [62.6, 77.71, 23.86, 3.31], RegistCurse: [62.6, 83.96, 23.86, 3.31], RegistPoison: [62.6, 89.94, 23.86, 3.31] };
+  var CH_IDX = { Class: 0, Level: 1, Nation: 2, RealmPoint: 3, AP: 4, GP: 5, Manner: 6, Strength: 7, Stamina: 8, Dexterity: 9, Intelligence: 10, MagicAttack: 11,
+    RegistFire: 12, RegistIce: 13, RegistLightR: 14, RegistPoison: 15, RegistMagic: 16, RegistCurse: 17, Exp: 18 };
+  function charHtml(d) {
+    var f = d.panel ? String(d.panel).split("|") : [];
+    var fb = { Class: d.job, Level: d.level + (d.reb > 0 ? "/" + d.reb : ""), Nation: d.nation === "KARUS" ? "Karus" : "El Morad", RealmPoint: fmt(d.np) };
+    var out = Object.keys(CH_F).map(function (k) {
+      var r = CH_F[k], v = k === "Id" ? d.name : (CH_IDX[k] < f.length && f[CH_IDX[k]] !== "" ? f[CH_IDX[k]] : (fb[k] != null ? fb[k] : "-"));
+      return "<span class='ko-cv" + (k === "Id" || k === "Class" ? " l" : "") + (k === "Id" ? " id" : "") + "' style='left:" + r[0] + "%;top:" + r[1] + "%;width:" + r[2] + "%;height:" + r[3] + "%'>" + esc(String(v)) + "</span>";
+    });
+    return "<div class='ko-char'><img class='ko-bg' src='images/ko_character.webp' alt=''>" + out.join("")
+      + (f.length ? "" : "<span class='ko-cnote'>Değerler oyuncu bir sonraki oyuna girişinde görünür.</span>") + "</div>";
   }
   function clanHtml(d) {
     var rows = (d.members || []).map(function (m, i) {

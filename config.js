@@ -10,7 +10,7 @@ window.BOYALICA = {
 
   // İndirme / topluluk linkleri. Boş bırakılan düğme "Yakında" olarak görünür.
   iosUrl: "https://testflight.apple.com/join/Srn1BPmR",   // TestFlight herkese açık bağlantısı
-  androidUrl: "https://github.com/alideniz24-24/boyalica-site/releases/latest/download/KOMobile.apk",   // her zaman en son APK (android-vN release)
+  androidUrl: "https://cdn.theknightonline.com.tr/apk/KOMobile.apk",   // 2026-11-24 Cloudflare R2 (GitHub TR'de yavaş); yeni APK: r2 apk/KOMobile.apk da güncellenmeli
   whatsappUrl: "https://chat.whatsapp.com/IKwWSXgbahk7n5P8RgEK0t",   // WhatsApp topluluğu
   discordUrl: "",    // Discord davet bağlantısı
   instagramUrl: "https://www.instagram.com/koantigonmobile/",   // Instagram hesabı

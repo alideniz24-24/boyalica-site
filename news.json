@@ -2,6 +2,13 @@
   "_aciklama": "Haberler ve duyurular: site ve oyundaki launcher buradan okur. En yeni üstte. tag: GÜNCELLEME / ETKİNLİK / DUYURU / PVP. image yalnız sitedeki haber kartı için.",
   "news": [
     {
+      "date": "24.11.2026",
+      "tag": "DUYURU",
+      "title": "Resmi açılış 27 Kasım!",
+      "text": "ANTIGON Mobile 27 Kasım'da resmi olarak açılıyor! 83 level başla, full item bedava; Ronark Land'deki savaşa sen de katıl. iOS ve Android'de ücretsiz.",
+      "image": "images/acilis_27kasim.jpg"
+    },
+    {
       "date": "30.10.2026",
       "tag": "GÜNCELLEME",
       "title": "Artı sınırı +9, CZ Görev Ustası ve 2.000 Knight Cash",

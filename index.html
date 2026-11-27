@@ -4,11 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ANTIGON — Knight Online Mobile</title>
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/favicon.png">
 <meta name="description" content="ANTIGON: Knight Online deneyimi mobilde. Karus ve El Morad savaşı, Forgotten Temple, Juraid Mountain ve daha fazlası.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=20261117">
+<link rel="stylesheet" href="style.css?v=20261126">
 </head>
 <body>
 
@@ -20,6 +22,7 @@
       <a href="#siralama">Sıralama</a>
       <a href="#siniflar">Sınıflar</a>
       <a href="#duyurular">Duyurular</a>
+      <a href="#yayincilar">Yayıncılar</a>
       <a href="#galeri">Galeri</a>
     </nav>
     <div class="auth" id="auth"></div>
@@ -133,6 +136,18 @@
             <p class="msg" id="pw-msg"></p>
           </form>
         </div>
+        <div class="card prof-sec" id="seal-sec">
+          <h3>Eşya Kilidi Şifresi</h3>
+          <p class="note">Oyunda Inn Hostess'e <b>Eşyalarını Kilitle</b> deyip eşyayı koyar, bu 6 haneli şifreyi yazarsan eşya kilitlenir: satılamaz, atılamaz, bankaya konamaz, takas edilemez, pazara konamaz, yükseltilemez. Kilitli eşya mavi görünür. Şifreyi belirlemek / değiştirmek için e-postana doğrulama kodu gelir. Durum: <b id="seal-state">-</b></p>
+          <form id="seal-form" class="form">
+            <div class="code-row" id="seal-code-row"><input type="text" id="seal-code" placeholder="E-posta doğrulama kodu" inputmode="numeric" maxlength="6" autocomplete="one-time-code"><button type="button" class="btn-line" id="seal-send">Kod Gönder</button></div>
+            <input type="password" id="seal-old" placeholder="Mevcut kilit şifresi" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" autocomplete="off" hidden>
+            <input type="password" id="seal-new" placeholder="Yeni kilit şifresi (6 rakam)" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" autocomplete="off" required>
+            <input type="password" id="seal-new2" placeholder="Yeni kilit şifresi (tekrar)" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" autocomplete="off" required>
+            <button class="btn-gold" type="submit">Kilit Şifresini Kaydet</button>
+            <p class="msg" id="seal-msg"></p>
+          </form>
+        </div>
         <div class="card prof-sec">
           <h3>E-posta</h3>
           <p class="note">Şifreni unutursan sıfırlama bağlantısı bu adrese gelir. Kayıtlı adres: <b id="em-now">-</b></p>
@@ -195,8 +210,22 @@
     <div class="ann" id="ann"></div>
   </section>
 
-  <section class="sec" id="galeri">
+  <section class="sec" id="yayincilar">
     <div class="sec-head"><span class="num">05</span><span class="line"></span></div>
+    <h2>Yayıncılarımız</h2>
+    <p class="sub">ANTIGON içerik üreticileri. Canlı yayında olanlar en başta; kanallarına tek dokunuşla git.</p>
+    <div class="st-bar">
+      <input type="search" id="st-q" placeholder="Yayıncı ara..." autocomplete="off">
+      <div class="st-sort" id="st-sort"><button class="on" data-s="live">Canlı önce</button><button data-s="az">A–Z</button></div>
+    </div>
+    <div class="st-chips" id="st-chips"></div>
+    <p class="st-count" id="st-count"></p>
+    <div class="st-grid" id="st-grid"><p class="st-empty">Yayıncılar yükleniyor…</p></div>
+    <p class="st-apply">İçerik üreticisi misin? <a id="st-apply" target="_blank" rel="noopener">Yayıncı programına başvur →</a></p>
+  </section>
+
+  <section class="sec" id="galeri">
+    <div class="sec-head"><span class="num">06</span><span class="line"></span></div>
     <h2>Oyun Galerisi</h2>
     <p class="sub">Oyun içi görüntüler</p>
     <div class="gallery" id="gallery"></div>
@@ -205,7 +234,7 @@
   <section class="sec" id="indir">
     <div class="card download">
       <div>
-        <div class="sec-head"><span class="num">06</span><span class="line"></span></div>
+        <div class="sec-head"><span class="num">07</span><span class="line"></span></div>
         <h2>Hemen İndir</h2>
         <p class="sub">ANTIGON'u indir ve efsanevi maceraya katıl. Ücretsiz oyna!</p>
         <div class="dl">
@@ -243,7 +272,7 @@
 <footer class="footer">
   <div class="foot-in">
     <div><span class="logo-main">ANTIGON</span><p>Knight Online Mobile özel sunucusu.</p></div>
-    <div class="foot-links"><a href="#haberler">Haberler</a><a href="#siralama">Sıralama</a><a href="#galeri">Galeri</a><a href="#indir">İndir</a><a data-link="whatsappUrl">WhatsApp</a><a data-link="instagramUrl">Instagram</a></div>
+    <div class="foot-links"><a href="#haberler">Haberler</a><a href="#siralama">Sıralama</a><a href="#yayincilar">Yayıncılar</a><a href="#galeri">Galeri</a><a href="#indir">İndir</a><a data-link="whatsappUrl">WhatsApp</a><a data-link="instagramUrl">Instagram</a></div>
   </div>
   <p class="copy">© <span id="year"></span> ANTIGON. Knight Online, ilgili hak sahiplerinin tescilli markasıdır.</p>
 </footer>
@@ -310,7 +339,7 @@
       <div class="code-row"><input id="r-code" placeholder="E-posta doğrulama kodu (6 hane)" inputmode="numeric" autocomplete="one-time-code" maxlength="6"><button class="btn-line" type="button" id="r-sendcode">Kod Gönder</button></div>
       <input id="r-pass" type="password" placeholder="Şifre (en az 4)" autocomplete="new-password" minlength="4" required>
       <input id="r-pass2" type="password" placeholder="Şifre (tekrar)" autocomplete="new-password" minlength="4" required>
-      <input id="r-ref" placeholder="Referans kodu (isteğe bağlı, ikinize de 500 KC)" autocomplete="off" maxlength="6">
+      <input id="r-ref" placeholder="Referans kodu (isteğe bağlı, ikinize de 250 KC)" autocomplete="off" maxlength="6">
       <label class="check"><input type="checkbox" id="r-rules" required> <span><a href="#" id="r-terms">Kullanıcı Sözleşmesi</a>'ni okudum ve tüm maddelerini kabul ediyorum (hile ve hesap paylaşımı yasaktır).</span></label>
       <button class="btn-gold" type="submit">Kayıt Ol</button>
       <p class="msg" id="r-msg"></p>
@@ -328,6 +357,6 @@
 </div>
 
 <script src="config.js?v=20261106"></script>
-<script src="app.js?v=20261117"></script>
+<script src="app.js?v=20261126"></script>
 </body>
 </html>

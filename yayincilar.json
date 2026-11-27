@@ -1,0 +1,5 @@
+{
+  "_aciklama": "Yayıncı listesi. Kod bilmeden düzenlenir: her yayıncı için ad, foto (images/yayinci/ klasörüne koyulan resim, boşsa baş harfi görünür), canli (true = şu an yayında, en başa çıkar) ve kanallar (platform: youtube / kick / tiktok / twitch / instagram, url: kanal linki). basvuruUrl boşsa başvuru linki WhatsApp topluluğuna gider.",
+  "basvuruUrl": "",
+  "yayincilar": []
+}

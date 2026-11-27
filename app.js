@@ -19,13 +19,31 @@
 
   // kayan şerit
   var words = ["WARRIOR", "ROGUE", "MAGE", "PRIEST", "KARUS", "EL MORAD", C.serverName || "ANTIGON"];
-  var t = "";
-  for (var k = 0; k < 4; k++) words.forEach(function (w) { t += "<span>" + esc(w) + "</span><span class='s'>✦</span>"; });
-  $("ticker").innerHTML = t + t;
+  // yeni kayıt olan oyuncuların karakter adları da geçer (site.json "newest", kullanıcı 2026-11-26)
+  var tickKey = "";
+  function setTicker(names) {
+    var key = (names || []).join("|");
+    if (key === tickKey && $("ticker").innerHTML) return;   // dakikalık yenilemede şerit baştan başlamasın
+    tickKey = key;
+    var t = "";
+    if (names && names.length) {
+      var list = [];
+      names.forEach(function (n, i) { list.push({ n: n }); if (i % 3 === 2) list.push({ w: words[(i / 3 | 0) % words.length] }); });
+      while (list.length < 12) list = list.concat(list);
+      list.forEach(function (x) {
+        t += (x.n ? "<span class='nw'><b>YENİ</b> " + esc(x.n) + "</span>" : "<span>" + esc(x.w) + "</span>") + "<span class='s'>✦</span>";
+      });
+    } else {
+      for (var k = 0; k < 4; k++) words.forEach(function (w) { t += "<span>" + esc(w) + "</span><span class='s'>✦</span>"; });
+    }
+    $("ticker").innerHTML = t + t;
+  }
+  setTicker(null);
 
   // haberler + duyurular: news.json (oyundaki launcher da okur)
   function renderNews(N) {
-  $("news").innerHTML = (N.news || []).map(function (n) {
+  // sitede son 3 haber (kullanıcı 2026-11-27: haberler çok yer kaplıyordu; oyun launcher'ı news.json'un tamamını okur)
+  $("news").innerHTML = (N.news || []).slice(0, 3).map(function (n) {
     return "<article class='card news-item'><div class='img' style=\"background-image:url('" + esc(n.image) + "')\"><span class='tag'>" + esc(n.tag) + "</span></div>" +
       "<div class='body'><span class='date'>" + esc(n.date) + "</span><h3>" + esc(n.title) + "</h3><p>" + esc(n.text) + "</p></div></article>";
   }).join("");
@@ -35,6 +53,70 @@
   }).join("");
   }
   fetch("news.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(renderNews).catch(function () { renderNews({}); });
+
+  // yayıncılar: yayincilar.json (kullanıcı 2026-11-26; ronarkmobile.com/yayincilar benzeri)
+  var ST_PF = {
+    youtube: { n: "YouTube", c: "#ff3d3d" }, kick: { n: "Kick", c: "#53fc18" }, tiktok: { n: "TikTok", c: "#25f4ee" },
+    twitch: { n: "Twitch", c: "#a970ff" }, instagram: { n: "Instagram", c: "#e1306c" }
+  };
+  var stList = [], stPf = "", stSort = "live";
+  function stName(x) { return String(x.ad || "").trim(); }
+  function stChans(x) { return (x.kanallar || []).filter(function (k) { return k && k.url && ST_PF[String(k.platform || "").toLowerCase()]; }); }
+  function stRender() {
+    var q = ($("st-q").value || "").trim().toLocaleLowerCase("tr-TR");
+    var list = stList.filter(function (x) {
+      return (!q || stName(x).toLocaleLowerCase("tr-TR").indexOf(q) >= 0) &&
+        (!stPf || stChans(x).some(function (k) { return k.platform.toLowerCase() === stPf; }));
+    });
+    list.sort(function (a, b) {
+      if (stSort === "live" && !!a.canli !== !!b.canli) return a.canli ? -1 : 1;
+      return stName(a).localeCompare(stName(b), "tr-TR");
+    });
+    $("st-count").textContent = stList.length ? list.length + " yayıncı" : "";
+    if (!list.length) {
+      $("st-grid").innerHTML = "<p class='st-empty'>" + (stList.length ? "Aramana uygun yayıncı yok." : "Yakında burada ANTIGON yayıncıları olacak. İlk sen ol!") + "</p>";
+      return;
+    }
+    $("st-grid").innerHTML = list.map(function (x) {
+      var ch = stChans(x), nm = stName(x);
+      var av = x.foto ? "<img src='" + esc(x.foto) + "' alt='' loading='lazy'>" : "<span>" + esc(nm.charAt(0).toLocaleUpperCase("tr-TR")) + "</span>";
+      var first = ch[0] ? ch[0].url : "";
+      return "<div class='card st-card" + (x.canli ? " live" : "") + "'>" +
+        "<a class='st-top'" + (first ? " href='" + esc(first) + "' target='_blank' rel='noopener'" : "") + ">" +
+        "<div class='st-av'>" + av + (x.canli ? "<i class='st-live'>CANLI</i>" : "") + "</div>" +
+        "<div class='st-nm'><b>" + esc(nm) + "</b><small>" + ch.length + " kanal</small></div></a>" +
+        "<div class='st-ch'>" + ch.map(function (k) {
+          var pf = ST_PF[k.platform.toLowerCase()];
+          return "<a href='" + esc(k.url) + "' target='_blank' rel='noopener' style='--pc:" + pf.c + "'><i></i>" + pf.n + "</a>";
+        }).join("") + "</div></div>";
+    }).join("");
+  }
+  function stChips() {
+    var cnt = {};
+    stList.forEach(function (x) { stChans(x).forEach(function (k) { var p = k.platform.toLowerCase(); cnt[p] = (cnt[p] || 0) + 1; }); });
+    var html = "<button class='" + (stPf ? "" : "on") + "' data-p=''>Tümü <em>" + stList.length + "</em></button>";
+    Object.keys(ST_PF).forEach(function (p) {
+      if (cnt[p]) html += "<button class='" + (stPf === p ? "on" : "") + "' data-p='" + p + "' style='--pc:" + ST_PF[p].c + "'><i></i>" + ST_PF[p].n + " <em>" + cnt[p] + "</em></button>";
+    });
+    $("st-chips").innerHTML = stList.length ? html : "";
+    $("st-chips").querySelectorAll("button").forEach(function (b) {
+      b.onclick = function () { stPf = b.getAttribute("data-p"); stChips(); stRender(); };
+    });
+  }
+  $("st-q").oninput = stRender;
+  document.querySelectorAll("#st-sort button").forEach(function (b) {
+    b.onclick = function () {
+      stSort = b.getAttribute("data-s");
+      document.querySelectorAll("#st-sort button").forEach(function (o) { o.classList.toggle("on", o === b); });
+      stRender();
+    };
+  });
+  fetch("yayincilar.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (d) {
+    stList = (d.yayincilar || []).filter(function (x) { return x && stName(x); });
+    var ap = d.basvuruUrl || C.whatsappUrl;
+    if (ap) $("st-apply").href = ap; else $("st-apply").parentNode.hidden = true;
+    stChips(); stRender();
+  }).catch(function () { stList = []; $("st-apply").parentNode.hidden = !C.whatsappUrl; if (C.whatsappUrl) $("st-apply").href = C.whatsappUrl; stChips(); stRender(); });
 
   // galeri + büyütme
   $("gallery").innerHTML = (C.gallery || []).map(function (g) {
@@ -67,6 +149,7 @@
     if (!C.apiBase) { setOffline("Sunucu adresi ayarlanmadı."); return; }
     fetch(C.apiBase + "/api/site.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (d) {
       $("st-dot").className = "dot on";
+      if (d.newest && d.newest.length) setTicker(d.newest);
       $("st-name").textContent = d.server || C.serverName;
       var tot = (d.karus || 0) + (d.human || 0);
       $("st-karus").textContent = tot ? "%" + Math.round(d.karus * 100 / tot) : "%0";
@@ -356,6 +439,13 @@
       $("p-name").textContent = d.user;
       $("p-email").textContent = d.email;
       $("em-now").textContent = d.email || "-";
+      // eşya kilidi şifresi (sunucu eskiyse alan yok)
+      sealSet = !!d.sealSet;
+      $("seal-state").textContent = d.sealSet === undefined ? "sunucu güncellemesi bekleniyor" : d.sealSet ? "belirlendi" : "belirlenmedi";
+      sealMail = d.mailOn !== false;
+      $("seal-old").hidden = sealMail || !sealSet;
+      $("seal-old").required = !sealMail && sealSet;
+      $("seal-code-row").hidden = !sealMail;
       $("p-play").textContent = d.playTime;
       $("p-state").textContent = d.status;
       $("p-last").textContent = d.lastLogin;
@@ -390,6 +480,34 @@
       btn.disabled = false;
       if (r.ok) { m.className = "msg ok"; m.textContent = "Şifren değiştirildi. Oyuna yeni şifrenle gir."; $("pw-form").reset(); }
       else m.textContent = r.error || "Şifre değiştirilemedi.";
+    });
+  };
+  var sealSet = false, sealMail = true;
+  $("seal-send").onclick = function () {
+    var m = $("seal-msg"), b = this;
+    m.className = "msg";
+    b.disabled = true;
+    api("/api/sealcode", {}, function (r) {
+      setTimeout(function () { b.disabled = false; }, 3000);
+      if (r.ok) { m.className = "msg ok"; m.textContent = r.info || "Kod gönderildi."; }
+      else m.textContent = r.error || "Kod gönderilemedi.";
+    });
+  };
+  $("seal-form").onsubmit = function (e) {
+    e.preventDefault();
+    var m = $("seal-msg"), btn = this.querySelector("button");
+    m.className = "msg";
+    var nw = $("seal-new").value;
+    if (!/^[0-9]{6}$/.test(nw)) { m.textContent = "Kilit şifresi tam 6 rakam olmalı."; return; }
+    if (nw !== $("seal-new2").value) { m.textContent = "Yeni kilit şifreleri aynı değil."; return; }
+    btn.disabled = true;
+    if (sealMail && !/^[0-9]{6}$/.test($("seal-code").value.trim())) { m.textContent = "E-postana gelen 6 haneli kodu gir ('Kod Gönder')."; return; }
+    api("/api/sealpin", { old: $("seal-old").value, pass: nw, code: $("seal-code").value.trim() }, function (r) {
+      btn.disabled = false;
+      if (r.ok) {
+        m.className = "msg ok"; m.textContent = "Eşya kilidi şifren kaydedildi.";
+        $("seal-form").reset(); sealSet = true; $("seal-state").textContent = "belirlendi"; $("seal-old").hidden = sealMail; $("seal-old").required = !sealMail;
+      } else m.textContent = r.error || "Kaydedilemedi.";
     });
   };
   $("em-form").onsubmit = function (e) {
